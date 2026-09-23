@@ -1,0 +1,53 @@
+---
+interface Props {
+  nombre: string;
+  class?: string;
+}
+
+const { nombre, class: clase } = Astro.props;
+---
+
+{
+  nombre === "Facebook" && (
+    <svg viewBox="0 0 24 24" fill="currentColor" class={clase} aria-hidden="true">
+      <path d="M13.5 21v-8.2h2.75l.41-3.2h-3.16V7.5c0-.93.26-1.56 1.6-1.56h1.7V3.14C16.46 3.1 15.5 3 14.38 3c-2.34 0-3.94 1.43-3.94 4.05v2.55H7.68v3.2h2.76V21h3.06Z" />
+    </svg>
+  )
+}
+{
+  nombre === "Instagram" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class={clase} aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="3.7" />
+      <circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+{
+  nombre === "Youtube" && (
+    <svg viewBox="0 0 24 24" fill="currentColor" class={clase} aria-hidden="true">
+      <path d="M21.6 7.6a2.8 2.8 0 0 0-1.97-2C17.9 5 12 5 12 5s-5.9 0-7.63.6a2.8 2.8 0 0 0-1.97 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.4 2.8 2.8 0 0 0 1.97 2C6.1 19 12 19 12 19s5.9 0 7.63-.6a2.8 2.8 0 0 0 1.97-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.4ZM10 15V9l5.2 3-5.2 3Z" />
+    </svg>
+  )
+}
+{
+  nombre === "Tiktok" && (
+    <svg viewBox="0 0 24 24" fill="currentColor" class={clase} aria-hidden="true">
+      <path d="M16.7 3h-3.1v12.3a2.9 2.9 0 1 1-2.06-2.78v-3.2a6.1 6.1 0 1 0 5.16 6.03V9.4a7.4 7.4 0 0 0 4.3 1.36V7.6a4.35 4.35 0 0 1-4.3-4.3Z" />
+    </svg>
+  )
+}
+{
+  nombre === "Twitter" && (
+    <svg viewBox="0 0 24 24" fill="currentColor" class={clase} aria-hidden="true">
+      <path d="M18.24 3h3.06l-6.69 7.64L22.5 21h-6.16l-4.83-6.32L5.98 21H2.92l7.16-8.18L2 3h6.32l4.36 5.77L18.24 3Zm-1.07 16.2h1.7L7.9 4.7H6.08l11.09 14.5Z" />
+    </svg>
+  )
+}
+{
+  nombre === "Linkedin" && (
+    <svg viewBox="0 0 24 24" fill="currentColor" class={clase} aria-hidden="true">
+      <path d="M6.94 8.5H3.56V21h3.38V8.5ZM5.25 3.25a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92ZM21 21h-3.38v-6.3c0-1.5-.03-3.43-2.09-3.43-2.1 0-2.42 1.64-2.42 3.33V21H9.73V8.5h3.24v1.7h.05c.45-.86 1.56-1.77 3.21-1.77 3.43 0 4.06 2.26 4.06 5.2V21Z" />
+    </svg>
+  )
+}

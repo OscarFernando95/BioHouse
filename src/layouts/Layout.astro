@@ -1,0 +1,200 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BotonFlotanteWhatsapp from "../components/BotonFlotanteWhatsapp.astro";
+import TransicionPagina from "../components/TransicionPagina.astro";
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+  imagen?: string;
+}
+
+const {
+  titulo,
+  descripcion = "Bio House Constructora: viviendas y soluciones constructivas con plástico recuperado que reducen la huella de carbono y generan impacto social.",
+  imagen = "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
+} = Astro.props;
+
+const tituloCompleto = titulo === "Bio House Constructora" ? titulo : `${titulo} · Bio House Constructora`;
+const urlCanonica = new URL(Astro.url.pathname, Astro.site ?? "https://www.biohouseconstructora.com").toString();
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+    <link rel="apple-touch-icon" href="/favicon-180.png" />
+
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={urlCanonica} />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={new URL(imagen, Astro.site ?? "https://www.biohouseconstructora.com")} />
+    <meta property="og:url" content={urlCanonica} />
+    <meta property="og:site_name" content="Bio House Constructora" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Red+Hat+Display:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    />
+  </head>
+  <body>
+    <TransicionPagina />
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <BotonFlotanteWhatsapp />
+
+    <script>
+      const prefiereMovimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const elementosRevelados = document.querySelectorAll<HTMLElement>("[data-reveal]");
+
+      if (prefiereMovimientoReducido || !("IntersectionObserver" in window)) {
+        elementosRevelados.forEach((el) => el.classList.add("en-vista"));
+      } else {
+        const observador = new IntersectionObserver(
+          (entradas) => {
+            entradas.forEach((entrada) => {
+              entrada.target.classList.toggle("en-vista", entrada.isIntersecting);
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+        );
+        elementosRevelados.forEach((el) => observador.observe(el));
+      }
+
+      const encabezado = document.querySelector<HTMLElement>("[data-encabezado]");
+      if (encabezado) {
+        const alternarSombra = () => {
+          encabezado.classList.toggle("con-scroll", window.scrollY > 12);
+        };
+        alternarSombra();
+        window.addEventListener("scroll", alternarSombra, { passive: true });
+      }
+
+      if (!prefiereMovimientoReducido) {
+        const capasParalaje = document.querySelectorAll<HTMLElement>("[data-parallax]");
+        if (capasParalaje.length) {
+          let ticking = false;
+
+          const actualizarParalaje = () => {
+            capasParalaje.forEach((capa) => {
+              const contenedor = capa.closest<HTMLElement>("[data-parallax-contenedor]") ?? capa.parentElement;
+              if (!contenedor) return;
+              const rect = contenedor.getBoundingClientRect();
+              const progreso = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+              const desplazamiento = (progreso - 0.5) * 60;
+              capa.style.transform = `translateY(${desplazamiento}px) scale(1.15)`;
+            });
+            ticking = false;
+          };
+
+          window.addEventListener(
+            "scroll",
+            () => {
+              if (!ticking) {
+                window.requestAnimationFrame(actualizarParalaje);
+                ticking = true;
+              }
+            },
+            { passive: true }
+          );
+          actualizarParalaje();
+        }
+      }
+    </script>
+
+    <script>
+      // Al cambiar de pestaña del navegador: el favicon gira (aspas del logo) y el
+      // título invita a volver, para contrastar con la pestaña mientras el sitio no se ve.
+      const enlaceFavicon = document.querySelector<HTMLLinkElement>('link[rel="icon"][sizes="32x32"]');
+
+      if (enlaceFavicon) {
+        const favicon: HTMLLinkElement = enlaceFavicon;
+        const prefiereMovimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const faviconOriginal = favicon.getAttribute("href");
+        const tituloOriginal = document.title;
+        const mensajeAusente = "¡No te vayas! Bio House";
+
+        let temporizador: number | null = null;
+        let cuadros: string[] | null = null;
+
+        function generarCuadrosRotados(): Promise<string[]> {
+          return new Promise((resolve) => {
+            const imagen = new Image();
+            imagen.onload = () => {
+              const total = 8;
+              const lienzo = document.createElement("canvas");
+              lienzo.width = 64;
+              lienzo.height = 64;
+              const contexto = lienzo.getContext("2d");
+              if (!contexto) {
+                resolve([]);
+                return;
+              }
+              const resultado: string[] = [];
+              for (let i = 0; i < total; i++) {
+                contexto.clearRect(0, 0, 64, 64);
+                contexto.save();
+                contexto.translate(32, 32);
+                contexto.rotate((i * 2 * Math.PI) / total);
+                contexto.drawImage(imagen, -32, -32, 64, 64);
+                contexto.restore();
+                resultado.push(lienzo.toDataURL("image/png"));
+              }
+              resolve(resultado);
+            };
+            imagen.onerror = () => resolve([]);
+            imagen.src = "/favicon-32.png";
+          });
+        }
+
+        async function alPerderVisibilidad() {
+          document.title = mensajeAusente;
+          if (prefiereMovimientoReducido || !faviconOriginal) return;
+
+          if (!cuadros) cuadros = await generarCuadrosRotados();
+          if (!cuadros.length || document.visibilityState !== "hidden") return;
+
+          let indice = 0;
+          temporizador = window.setInterval(() => {
+            indice = (indice + 1) % (cuadros as string[]).length;
+            favicon.setAttribute("href", (cuadros as string[])[indice]);
+          }, 160);
+        }
+
+        function alRecuperarVisibilidad() {
+          document.title = tituloOriginal;
+          if (temporizador !== null) {
+            window.clearInterval(temporizador);
+            temporizador = null;
+          }
+          if (faviconOriginal) favicon.setAttribute("href", faviconOriginal);
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            void alPerderVisibilidad();
+          } else {
+            alRecuperarVisibilidad();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

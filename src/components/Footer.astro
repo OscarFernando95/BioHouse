@@ -1,0 +1,83 @@
+---
+import { sitio, redesSociales } from "../data/site.js";
+import Icono from "./Icono.astro";
+
+const redesFooter = redesSociales.filter((r) =>
+  ["Facebook", "Instagram", "Youtube", "Tiktok"].includes(r.nombre)
+);
+---
+
+<footer class="bg-deep text-white/70">
+  <div class="container-ancho grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="sm:col-span-2 lg:col-span-2">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/images/logo-bio.png" alt="Bio House Constructora" class="h-12 w-auto" width="400" height="400" />
+        <span class="font-heading text-lg font-extrabold leading-none tracking-tight text-white">BIO HOUSE</span>
+      </a>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed">{sitio.descripcion}</p>
+      <div class="mt-6 flex gap-4">
+        {
+          redesFooter.map((red) => (
+            <a
+              href={red.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={red.nombre}
+              class="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-primary hover:text-primary"
+            >
+              <span class="sr-only">{red.nombre}</span>
+              <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current">
+                <use href={`#icono-${red.nombre.toLowerCase()}`} />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div>
+      <h3 class="font-heading text-sm font-semibold uppercase tracking-wide text-white">Navegación</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/" class="hover:text-primary">Inicio</a></li>
+        <li><a href="/quienes-somos" class="hover:text-primary">Quiénes Somos</a></li>
+        <li><a href="/servicios" class="hover:text-primary">Servicios</a></li>
+        <li><a href="/blog" class="hover:text-primary">Blog</a></li>
+        <li><a href="/contacto" class="hover:text-primary">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-heading text-sm font-semibold uppercase tracking-wide text-white">Contacto</h3>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li class="flex items-start gap-2.5">
+          <Icono nombre="ubicacion" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+          <span>{sitio.direccion}</span>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icono nombre="telefono" class="h-4 w-4 shrink-0 text-primary" />
+          <a href={`tel:${sitio.telefono.replace(/\s/g, "")}`} class="hover:text-primary">{sitio.telefono}</a>
+        </li>
+        <li class="flex items-center gap-2.5">
+          <Icono nombre="correo" class="h-4 w-4 shrink-0 text-primary" />
+          <a href={`mailto:${sitio.email}`} class="hover:text-primary">{sitio.email}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-ancho flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/50 sm:flex-row">
+      <p>© {new Date().getFullYear()} Bio House Constructora</p>
+      <a href="/politica-de-privacidad" class="hover:text-primary">Política de privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<svg class="hidden">
+  <symbol id="icono-facebook" viewBox="0 0 24 24"><path d="M13.5 21v-8.2h2.75l.41-3.2h-3.16V7.5c0-.93.26-1.56 1.6-1.56h1.7V3.14C16.46 3.1 15.5 3 14.38 3c-2.34 0-3.94 1.43-3.94 4.05v2.55H7.68v3.2h2.76V21h3.06Z" /></symbol>
+  <symbol id="icono-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.7" /><circle cx="17.1" cy="6.9" r="0.9" fill="currentColor" stroke="none" />
+  </symbol>
+  <symbol id="icono-youtube" viewBox="0 0 24 24"><path d="M21.6 7.6a2.8 2.8 0 0 0-1.97-2C17.9 5 12 5 12 5s-5.9 0-7.63.6a2.8 2.8 0 0 0-1.97 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.4 2.8 2.8 0 0 0 1.97 2C6.1 19 12 19 12 19s5.9 0 7.63-.6a2.8 2.8 0 0 0 1.97-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.4ZM10 15V9l5.2 3-5.2 3Z" /></symbol>
+  <symbol id="icono-tiktok" viewBox="0 0 24 24"><path d="M16.7 3h-3.1v12.3a2.9 2.9 0 1 1-2.06-2.78v-3.2a6.1 6.1 0 1 0 5.16 6.03V9.4a7.4 7.4 0 0 0 4.3 1.36V7.6a4.35 4.35 0 0 1-4.3-4.3Z" /></symbol>
+</svg>

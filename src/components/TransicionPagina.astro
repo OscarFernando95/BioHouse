@@ -1,0 +1,61 @@
+---
+// Barra de carga sutil en la parte superior + un giro rápido del logo del header,
+// como aviso de carga inicial y de transición entre páginas, sin tapar el contenido.
+---
+
+<div id="barra-carga" class="barra-carga" aria-hidden="true"></div>
+
+<script>
+  const barra = document.getElementById("barra-carga");
+  const prefiereMovimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function girarLogo() {
+    const logo = document.querySelector<HTMLElement>(".logo-vivo");
+    if (!logo) return;
+    logo.classList.remove("logo-cargando");
+    // Forzar reflow para poder reiniciar la animación si ya se estaba reproduciendo.
+    void logo.offsetWidth;
+    logo.classList.add("logo-cargando");
+  }
+
+  if (barra && !prefiereMovimientoReducido) {
+    // Al terminar de cargar la página: la barra avanza y se desvanece.
+    requestAnimationFrame(() => {
+      barra.classList.add("completa");
+      girarLogo();
+      window.setTimeout(() => barra.classList.add("oculta"), 260);
+    });
+
+    // Al navegar a otra página del sitio: la barra arranca de inmediato,
+    // sin bloquear el clic ni retrasar la navegación real.
+    document.addEventListener("click", (evento) => {
+      const objetivo = evento.target;
+      const enlace = objetivo instanceof Element ? objetivo.closest("a") : null;
+      if (!enlace || !(enlace instanceof HTMLAnchorElement)) return;
+      if (enlace.target === "_blank" || enlace.hasAttribute("download")) return;
+      if (
+        evento.defaultPrevented ||
+        evento.button !== 0 ||
+        evento.metaKey ||
+        evento.ctrlKey ||
+        evento.shiftKey ||
+        evento.altKey
+      ) {
+        return;
+      }
+
+      let destino: URL;
+      try {
+        destino = new URL(enlace.href, location.href);
+      } catch {
+        return;
+      }
+      if (destino.origin !== location.origin) return;
+      if (destino.pathname === location.pathname && destino.hash) return;
+
+      barra.classList.remove("completa", "oculta");
+      barra.classList.add("cargando");
+      girarLogo();
+    });
+  }
+</script>

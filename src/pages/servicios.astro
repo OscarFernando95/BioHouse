@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroInterior from "../components/HeroInterior.astro";
+import Icono from "../components/Icono.astro";
+
+const servicios = [
+  {
+    titulo: "Arquitectura sostenible",
+    icono: "casa" as const,
+    imagen: "/images/IMG-20210228-WA0015.jpg",
+    href: "/arquitectura",
+    texto: "Diseños funcionales y eficientes, alineados con sistemas constructivos innovadores.",
+  },
+  {
+    titulo: "Ingeniería aplicada",
+    icono: "escudo" as const,
+    imagen: "/images/IMG-20210327-WA0020.jpg",
+    href: "/ingenieria",
+    texto: "Viabilidad técnica, seguridad estructural y cumplimiento normativo en cada proyecto.",
+  },
+  {
+    titulo: "Energía solar",
+    icono: "sol" as const,
+    imagen: "/images/Sin-titulo.jpeg",
+    href: "/energia-solar",
+    texto: "Sistemas de energía limpia que reducen costos y optimizan el consumo energético.",
+  },
+  {
+    titulo: "Domótica inteligente",
+    icono: "chip" as const,
+    imagen: "/images/Sin-titulo-2.jpeg",
+    href: "/domotica",
+    texto: "Automatización para espacios más eficientes, seguros y preparados para el futuro.",
+  },
+];
+---
+
+<Layout
+  titulo="Servicios"
+  descripcion="Arquitectura, ingeniería, energía solar y domótica integradas en un solo modelo constructivo sostenible."
+>
+  <HeroInterior
+    imagen="/images/IMG-20210327-WA0020.jpg"
+    alt="Servicios integrales de Bio House Constructora"
+    frase="Un solo modelo constructivo, sostenible e inteligente"
+    titulo="Arquitectura, ingeniería, energía solar y domótica integradas en cada proyecto"
+    texto="Diseñado para optimizar recursos, reducir impacto ambiental y garantizar resultados confiables."
+  />
+
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-8 sm:grid-cols-2">
+      {
+        servicios.map((servicio, indice) => (
+          <a
+            href={servicio.href}
+            class="group flex flex-col overflow-hidden rounded-xl border border-black/5 shadow-sm shadow-black/5 transition-shadow hover:shadow-lg"
+            data-reveal={indice % 2 === 0 ? "izquierda" : "derecha"}
+            style={`--reveal-delay: ${Math.floor(indice / 2) * 120}ms`}
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src={servicio.imagen}
+                alt={servicio.titulo}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-7">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icono nombre={servicio.icono} class="h-5 w-5" />
+              </span>
+              <h2 class="mt-4 font-heading text-xl font-semibold group-hover:text-primary-dark">{servicio.titulo}</h2>
+              <p class="mt-2 text-sm leading-relaxed">{servicio.texto}</p>
+              <span class="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-primary">
+                Conocer más →
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-ink py-20 text-white sm:py-24">
+    <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="abajo">
+      <h2 class="max-w-2xl font-heading text-4xl font-bold text-white sm:text-5xl">
+        Construyamos juntos tu próximo proyecto
+      </h2>
+      <p class="max-w-xl text-white/75">
+        Da el siguiente paso hacia una construcción más eficiente, responsable y alineada con el futuro.
+      </p>
+      <a href="/contacto" class="boton-primario">El momento es ahora</a>
+    </div>
+  </section>
+</Layout>

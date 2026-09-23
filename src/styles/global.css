@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Red Hat Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Red Hat Display", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+
+  /* Paleta tomada directamente del logo Bio House */
+  --color-primary: #0f6536;
+  --color-primary-dark: #0b4e2a;
+  --color-lime: #8dc63f;
+  --color-lime-dark: #6fa82e;
+  --color-ink: #12241a;
+  --color-body: #46524a;
+  --color-mint: #eef6e8;
+  --color-mint-deep: #dbedc7;
+  --color-deep: #071710;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-body);
+    background-color: #ffffff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+}
+
+.container-ancho {
+  @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 font-display text-base tracking-[0.25em] text-primary;
+}
+
+.cifra {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+@utility boton {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 font-heading text-sm font-semibold uppercase tracking-wide transition-colors duration-200;
+}
+
+@utility boton-primario {
+  @apply boton bg-primary text-white hover:bg-primary-dark;
+}
+
+@utility boton-secundario {
+  @apply boton border border-white/70 text-white hover:bg-white hover:text-ink;
+}
+
+@utility boton-oscuro {
+  @apply boton border border-ink/15 text-ink hover:border-primary hover:text-primary;
+}
+
+/* ---------- Movimiento al desplazarse ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Sistema de revelado con variedad de direcciones:
+     data-reveal            -> sube desde abajo (por defecto)
+     data-reveal="abajo"    -> baja desde arriba
+     data-reveal="izquierda"-> entra desde la izquierda
+     data-reveal="derecha"  -> entra desde la derecha
+     data-reveal="zoom"     -> se acerca desde un ligero zoom */
+  [data-reveal] {
+    --reveal-x: 0px;
+    --reveal-y: 32px;
+    --reveal-escala: 1;
+    opacity: 0;
+    transform: translate(var(--reveal-x), var(--reveal-y)) scale(var(--reveal-escala));
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].en-vista {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  [data-reveal="abajo"] {
+    --reveal-y: -32px;
+  }
+
+  [data-reveal="izquierda"] {
+    --reveal-x: -60px;
+    --reveal-y: 0px;
+  }
+
+  [data-reveal="derecha"] {
+    --reveal-x: 60px;
+    --reveal-y: 0px;
+  }
+
+  [data-reveal="zoom"] {
+    --reveal-x: 0px;
+    --reveal-y: 0px;
+    --reveal-escala: 1.06;
+  }
+
+  [data-entrada] {
+    animation: entrada 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--entrada-delay, 0ms);
+  }
+
+  [data-entrada="zoom"] {
+    animation-name: entrada-zoom;
+    animation-duration: 1.1s;
+  }
+
+  @keyframes entrada {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes entrada-zoom {
+    from {
+      opacity: 0;
+      transform: scale(0.88) translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  [data-parallax] {
+    will-change: transform;
+  }
+
+  [data-contenido-carrusel] > * {
+    animation: entrada 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* La frase grande (antes "eyebrow") entra con un zoom llamativo;
+     el título, texto y botones -complementarios- suben en cascada */
+  [data-contenido-carrusel] > *:nth-child(1) {
+    animation-name: entrada-zoom;
+    animation-duration: 1.1s;
+    animation-delay: 0ms;
+  }
+  [data-contenido-carrusel] > *:nth-child(2) {
+    animation-delay: 220ms;
+  }
+  [data-contenido-carrusel] > *:nth-child(3) {
+    animation-delay: 340ms;
+  }
+  [data-contenido-carrusel] > *:nth-child(4) {
+    animation-delay: 460ms;
+  }
+
+  /* Pequeño "pulso" en los botones del carrusel al cambiar de diapositiva */
+  @keyframes boton-pulso {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.14);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .pulso {
+    animation: boton-pulso 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+header[data-encabezado].con-scroll {
+  box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.25);
+}
+
+/* ---------- Logo con vida propia en el encabezado ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-vivo {
+    transform-origin: 50% 50%;
+    animation: logo-respirar 4.5s ease-in-out infinite;
+  }
+
+  .logo-enlace:hover .logo-vivo,
+  .logo-enlace:focus-visible .logo-vivo {
+    animation: logo-girar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes logo-respirar {
+    0%,
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 0 rgb(141 198 63 / 0));
+    }
+    50% {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 14px rgb(141 198 63 / 0.55));
+    }
+  }
+
+  @keyframes logo-girar {
+    from {
+      transform: scale(1) rotate(0deg);
+    }
+    to {
+      transform: scale(1.08) rotate(360deg);
+    }
+  }
+
+  /* Reutiliza el giro del logo como aviso sutil de carga/transición */
+  .logo-vivo.logo-cargando {
+    animation: logo-girar 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+/* ---------- Barra de carga sutil (basada en los colores del logo) ---------- */
+
+.barra-carga {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 3px;
+  width: 0%;
+  opacity: 0;
+  background: linear-gradient(90deg, var(--color-lime), var(--color-primary));
+  box-shadow: 0 0 8px 1px rgb(141 198 63 / 0.6);
+  transition: width 0.25s ease-out, opacity 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .barra-carga.cargando {
+    width: 80%;
+    opacity: 1;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.15s ease-out;
+  }
+
+  .barra-carga.completa {
+    width: 100%;
+    opacity: 1;
+    transition: width 0.25s ease-out;
+  }
+
+  .barra-carga.oculta {
+    opacity: 0;
+    transition: opacity 0.35s ease-out;
+  }
+}
+
+.texto-contraste {
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
+}
+
+[data-capa] {
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}

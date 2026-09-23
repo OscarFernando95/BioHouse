@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import Icono from "../components/Icono.astro";
+
+const soluciones = [
+  "Sistemas solares fotovoltaicos",
+  "Soluciones solares para vivienda y proyectos institucionales",
+  "Sistemas híbridos y de autoconsumo",
+  "Asesoría técnica y acompañamiento en implementación",
+  "Integración con sistemas constructivos sostenibles",
+];
+
+const beneficios = [
+  "Ahorro en costos de energía",
+  "Mayor autosuficiencia energética",
+  "Reducción de huella de carbono",
+  "Incremento del valor del inmueble",
+  "Contribución real al cuidado del planeta",
+];
+---
+
+<Layout
+  titulo="Energía Solar"
+  descripcion="Diseñamos e implementamos sistemas de energía solar que reducen costos, optimizan el consumo energético y cuidan el medio ambiente."
+>
+  <!-- Héroe -->
+  <section class="relative flex min-h-[70vh] items-center overflow-hidden bg-deep" data-parallax-contenedor>
+    <img
+      src="/images/pexels-hoan-ng-c-510735-6961085-scaled.jpg"
+      alt="Paneles solares en proyecto Bio House"
+      class="absolute inset-0 h-full w-full scale-110 object-cover"
+      data-parallax
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/20"></div>
+    <div class="container-ancho relative py-20 text-white texto-contraste" data-entrada>
+      <p class="eyebrow text-mint-deep">Energía solar</p>
+      <h1 class="mt-4 max-w-3xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+        Diseñamos e implementamos sistemas de energía solar que reducen costos, optimizan el consumo energético y
+        aportan al cuidado del medio ambiente.
+      </h1>
+      <p class="mt-6 max-w-xl text-white/85">
+        Integramos energía limpia a tus proyectos desde el diseño hasta la ejecución.
+      </p>
+      <a href="/contacto" class="boton-primario mt-8">Agenda una asesoría</a>
+    </div>
+  </section>
+
+  <!-- En qué consiste -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho max-w-3xl text-center" data-reveal="abajo">
+      <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿En qué consiste nuestro servicio de Energía Solar?</h2>
+      <p class="mx-auto mt-5 max-w-2xl leading-relaxed">
+        En Bio House Constructora desarrollamos soluciones de energía solar adaptadas a cada proyecto,
+        integrándolas de manera eficiente a la arquitectura y la ingeniería para lograr edificaciones más rentables,
+        sostenibles y autosuficientes.
+      </p>
+      <a href="/contacto" class="boton-oscuro mt-8">Cuéntanos tu proyecto</a>
+    </div>
+  </section>
+
+  <!-- Enfoque -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
+        <img
+          src="/images/pexels-quang-nguyen-vinh-222549-35105464-1536x770.jpg"
+          alt="Enfoque en energía solar"
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <div data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">Nuestro enfoque en energía solar</h2>
+        <div class="mt-6 grid gap-6">
+          <div>
+            <h3 class="font-heading font-semibold text-primary-dark">Integración constructiva</h3>
+            <p class="mt-2 text-sm leading-relaxed">
+              Integramos los sistemas solares al diseño arquitectónico y estructural, evitando retrabajos y
+              sobrecostos.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-heading font-semibold text-primary-dark">Energía limpia y rentable</h3>
+            <p class="mt-2 text-sm leading-relaxed">
+              Reducimos el consumo de energía convencional y las emisiones de gases de efecto invernadero.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soluciones y beneficios -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-12 md:grid-cols-2">
+      <div class="rounded-xl border border-black/5 p-8" data-reveal="izquierda">
+        <h2 class="font-heading text-2xl font-semibold">¿Qué soluciones solares ofrecemos?</h2>
+        <ul class="mt-6 space-y-3">
+          {
+            soluciones.map((s) => (
+              <li class="flex items-start gap-3">
+                <Icono nombre="check" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{s}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="rounded-xl bg-mint p-8" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h3 class="font-heading text-2xl font-semibold">Beneficios para tu proyecto</h3>
+        <ul class="mt-6 space-y-3">
+          {
+            beneficios.map((b) => (
+              <li class="flex items-start gap-3">
+                <Icono nombre="check" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{b}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="container-ancho mt-10">
+      <div class="rounded-xl bg-ink p-8 text-white" data-reveal="abajo">
+        <h3 class="font-heading text-xl font-semibold text-white">Nuestro acompañamiento</h3>
+        <p class="mt-3 max-w-2xl leading-relaxed text-white/80">
+          Te acompañamos desde el análisis inicial hasta la instalación y puesta en marcha del sistema solar,
+          asegurando eficiencia, seguridad y correcto funcionamiento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mint-deep/60 py-20 sm:py-24">
+    <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="zoom">
+      <h2 class="max-w-2xl font-heading text-4xl font-bold sm:text-5xl">
+        Energía limpia que impulsa tu proyecto hacia el futuro
+      </h2>
+      <p class="max-w-xl">Invierte hoy en soluciones energéticas responsables y eficientes.</p>
+    </div>
+  </section>
+
+  <CtaFinal />
+</Layout>

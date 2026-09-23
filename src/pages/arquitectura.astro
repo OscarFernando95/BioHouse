@@ -1,0 +1,193 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import Icono from "../components/Icono.astro";
+
+const pasos = [
+  "Diagnóstico y asesoría inicial",
+  "Anteproyecto",
+  "Diseño arquitectónico",
+  "Coordinación con ingeniería y sistemas sostenibles",
+  "Acompañamiento de obra",
+];
+
+const galeria = [
+  "/images/IMG-20200601-WA0028.jpg",
+  "/images/IMG-20200601-WA0027.jpg",
+  "/images/IMG-20200601-WA0026.jpg",
+  "/images/IMG-20200601-WA0024.jpg",
+  "/images/IMG-20200601-WA0022.jpg",
+];
+
+const tiposProyecto = [
+  "Vivienda unifamiliar y multifamiliar",
+  "Vivienda de interés social y rural",
+  "Proyectos institucionales y comunitarios",
+  "Infraestructura liviana y modular",
+  "Proyectos comerciales y privados",
+];
+
+const beneficios = [
+  "Diseños listos para construir sin sobrecostos",
+  "Ahorro en tiempos y recursos",
+  "Proyectos sostenibles y eficientes",
+];
+---
+
+<Layout
+  titulo="Arquitectura"
+  descripcion="Arquitectura sostenible diseñada para construir mejor: soluciones funcionales, eficientes y alineadas con sistemas constructivos innovadores."
+>
+  <!-- Héroe -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho max-w-3xl" data-entrada>
+      <p class="eyebrow">Arquitectura sostenible</p>
+      <h1 class="mt-4 font-heading text-4xl font-extrabold leading-tight sm:text-5xl">
+        Creamos soluciones arquitectónicas funcionales, eficientes y alineadas con sistemas constructivos innovadores
+        y sostenibles.
+      </h1>
+      <p class="mt-6 leading-relaxed">
+        Diseñamos pensando en el entorno, el uso real del espacio y la viabilidad técnica de cada proyecto.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/contacto" class="boton-primario">Contacto</a>
+        <a href="/contacto" class="boton-oscuro">Agenda una asesoría</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho">
+      <h2 class="font-heading text-4xl font-bold sm:text-5xl" data-reveal>Nuestro proceso de diseño</h2>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          pasos.map((paso, indice) => (
+            <div
+              class="rounded-xl border border-black/5 bg-mint/50 p-6"
+              data-reveal={["izquierda", "arriba", "derecha", "abajo", "arriba"][indice]}
+              style={`--reveal-delay: ${indice * 100}ms`}
+            >
+              <span class="cifra text-3xl text-primary/60">{String(indice + 1).padStart(2, "0")}</span>
+              <p class="mt-3 font-heading font-semibold leading-snug">{paso}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mx-auto mt-14 max-w-3xl text-center leading-relaxed" data-reveal>
+        En Bio House Constructora desarrollamos proyectos arquitectónicos integrales, adaptados a las necesidades
+        técnicas, estéticas y funcionales de cada cliente. Nuestro enfoque combina diseño inteligente, eficiencia
+        constructiva y sostenibilidad, asegurando soluciones viables, optimizadas y listas para ejecutar.
+      </p>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section class="bg-ink py-20 sm:py-24">
+    <div class="container-ancho grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      {
+        galeria.map((foto, indice) => (
+          <div
+            class="aspect-square overflow-hidden rounded-lg"
+            data-reveal={indice % 2 === 0 ? "izquierda" : "derecha"}
+            style={`--reveal-delay: ${indice * 90}ms`}
+          >
+            <img
+              src={foto}
+              alt="Proyecto de arquitectura Bio House"
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Enfoque -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
+        <img src="/images/IMG-20210424-WA0024-1024x663.jpg" alt="Enfoque de arquitectura sostenible" class="h-full w-full object-cover" />
+      </div>
+      <div data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">Nuestro enfoque de arquitectura sostenible</h2>
+        <p class="mt-4 leading-relaxed">
+          Cada proyecto parte del análisis del entorno, el clima, el uso del espacio y el impacto ambiental.
+        </p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 class="font-heading font-semibold text-primary-dark">Arquitectura eficiente</h3>
+            <p class="mt-2 text-sm leading-relaxed">Optimizamos diseños para reducir tiempos de obra, costos y desperdicios.</p>
+          </div>
+          <div>
+            <h3 class="font-heading font-semibold text-primary-dark">Integración técnica</h3>
+            <p class="mt-2 text-sm leading-relaxed">
+              Nuestros diseños se articulan con ingeniería, energía solar, domótica y sistemas constructivos
+              innovadores.
+            </p>
+          </div>
+        </div>
+        <a href="/contacto" class="boton-oscuro mt-8">Hablemos de tu proyecto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tipos de proyecto -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
+        <img src="/images/IMG-20210429-WA0021-1024x576.jpg" alt="Tipos de proyectos arquitectónicos" class="h-full w-full object-cover" />
+      </div>
+      <div data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿Qué tipo de proyectos desarrollamos?</h2>
+        <ul class="mt-6 space-y-3">
+          {
+            tiposProyecto.map((tipo) => (
+              <li class="flex items-start gap-3">
+                <Icono nombre="check" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{tipo}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-reveal="izquierda">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿Tu proyecto encaja aquí?</h2>
+        <p class="mt-4 font-heading text-lg font-semibold text-primary-dark">Beneficios para ti</p>
+        <ul class="mt-4 space-y-3">
+          {
+            beneficios.map((beneficio) => (
+              <li class="flex items-start gap-3">
+                <Icono nombre="check" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>{beneficio}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a href="/contacto" class="boton-primario mt-8">Agenda tu asesoría</a>
+      </div>
+      <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <img src="/images/IMG_0332.jpg" alt="Acompañamiento en obra" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink py-20 text-white sm:py-24">
+    <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="abajo">
+      <h2 class="max-w-2xl font-heading text-4xl font-bold text-white sm:text-5xl">Nuestro acompañamiento</h2>
+      <p class="max-w-xl text-white/75">
+        Te acompañamos en cada etapa del proyecto, desde el diseño hasta la entrega final de la obra.
+      </p>
+      <a href="/contacto" class="boton-primario">Inicia tu proyecto hoy</a>
+    </div>
+  </section>
+
+  <CtaFinal />
+</Layout>

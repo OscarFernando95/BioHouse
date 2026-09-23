@@ -1,0 +1,160 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import HeroInterior from "../components/HeroInterior.astro";
+import Icono from "../components/Icono.astro";
+
+const equipo = [
+  "/images/20251231_222217-IMG_STYLE-150x150.jpg",
+  "/images/IMG-20220222-WA0018-150x150.jpeg",
+  "/images/IMG_20220314_170927367_HDR-150x150.jpg",
+  "/images/IMG_20220225_110928604_HDR-150x150.jpg",
+];
+
+const valores = [
+  {
+    icono: "escudo" as const,
+    titulo: "Experiencia que genera confianza",
+    texto: "Más de 5 años desarrollando sistemas constructivos sostenibles en Colombia.",
+    revelado: "izquierda" as const,
+  },
+  {
+    icono: "objetivo" as const,
+    titulo: "Diseñamos soluciones personalizadas",
+    texto: "Cada proyecto se adapta a las necesidades técnicas y presupuestales del cliente.",
+    revelado: "abajo" as const,
+  },
+  {
+    icono: "calendario" as const,
+    titulo: "Acompañamiento de principio a fin",
+    texto: "Del diagnóstico a la entrega, con seguimiento técnico en cada etapa.",
+    revelado: "derecha" as const,
+  },
+];
+---
+
+<Layout
+  titulo="Quiénes Somos"
+  descripcion="Bio House Constructora: construcción innovadora, sostenible y estratégica con más de 5 años de experiencia en Colombia."
+>
+  <HeroInterior
+    imagen="/images/IMG_20220225_110928604_HDR-1024x768.jpg"
+    alt="Equipo de Bio House Constructora en obra"
+    frase="Construcción innovadora, sostenible y estratégica"
+    titulo="Más de 5 años transformando plástico recuperado en hogares sostenibles"
+  />
+
+  <!-- Presentación -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho max-w-3xl" data-reveal="abajo">
+      <p class="font-heading text-xl font-semibold leading-relaxed text-ink sm:text-2xl">
+        En Bio House Constructora somos una empresa colombiana con más de 5 años de experiencia, especializada en el
+        desarrollo de sistemas constructivos innovadores a partir de plástico recuperado, orientados a crear
+        edificaciones seguras, eficientes y ambientalmente responsables.
+      </p>
+      <p class="mt-6 leading-relaxed">
+        Nuestro propósito es transformar residuos en soluciones constructivas de alto valor, respondiendo a las
+        necesidades actuales de vivienda, infraestructura y desarrollo social, con un enfoque técnico, económico y
+        sostenible.
+      </p>
+      <p class="mt-4 leading-relaxed">
+        Desarrollamos un sistema constructivo industrializado con bloques de plástico recuperado, diseñado para
+        reducir tiempos de obra, costos operativos y huella de carbono, sin sacrificar calidad ni resistencia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-reveal="izquierda">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">Nuestro Equipo</h2>
+        <p class="mt-3 font-heading text-lg font-semibold text-primary-dark">
+          Personas que construyen con propósito
+        </p>
+        <div class="mt-6 space-y-4 text-sm leading-relaxed">
+          <p>
+            En Bio House Constructora creemos que la verdadera innovación nace de las personas. Nuestro equipo está
+            conformado por profesionales técnicos, operativos y estratégicos que comparten una misma visión:
+            construir de forma responsable, eficiente y sostenible.
+          </p>
+          <p>
+            Integramos experiencia en ingeniería, arquitectura, procesos industriales, gestión de proyectos y
+            sostenibilidad, lo que nos permite abordar cada obra con una mirada integral, desde el diseño y la
+            planificación hasta la ejecución y el seguimiento en campo.
+          </p>
+          <p>
+            Trabajamos de manera colaborativa, con altos estándares técnicos y una cultura de mejora continua,
+            asegurando que cada proyecto refleje los valores que definen a Bio House: innovación, responsabilidad
+            ambiental y visión de futuro.
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-2" data-reveal="derecha" style="--reveal-delay: 100ms">
+        {
+          equipo.map((foto) => (
+            <img
+              src={foto}
+              alt="Miembro del equipo de Bio House Constructora"
+              loading="lazy"
+              class="aspect-square w-full rounded-full object-cover shadow-md shadow-black/10"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-8 md:grid-cols-3">
+      {
+        valores.map((valor, indice) => (
+          <div class="rounded-xl border border-black/5 p-7" data-reveal={valor.revelado} style={`--reveal-delay: ${indice * 120}ms`}>
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Icono nombre={valor.icono} class="h-6 w-6" />
+            </span>
+            <h3 class="mt-4 font-heading text-lg font-semibold text-primary-dark">{valor.titulo}</h3>
+            <p class="mt-3 text-sm leading-relaxed">{valor.texto}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Visión y misión -->
+  <section class="bg-ink py-20 text-white sm:py-24">
+    <div class="container-ancho grid gap-12 md:grid-cols-2">
+      <div data-reveal="izquierda">
+        <h3 class="font-heading text-2xl font-semibold text-white">Visión</h3>
+        <p class="mt-4 leading-relaxed text-white/80">
+          Ser una empresa líder y referente a nivel nacional en soluciones constructivas innovadoras y sostenibles,
+          reconocida por el desarrollo de obras eficientes, de alta calidad y bajo impacto ambiental.
+        </p>
+        <p class="mt-4 leading-relaxed text-white/80">
+          Proyectamos nuestro modelo constructivo hacia el mercado internacional, aportando al crecimiento
+          responsable de las ciudades, la reducción de emisiones de gases de efecto invernadero y al bienestar de la
+          sociedad.
+        </p>
+      </div>
+      <div data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h3 class="font-heading text-2xl font-semibold text-white">Misión</h3>
+        <p class="mt-4 leading-relaxed text-white/80">
+          Brindar servicios de construcción e ingeniería mediante soluciones constructivas innovadoras y sostenibles,
+          adaptadas a las necesidades de cada cliente, garantizando eficiencia, calidad y confiabilidad en cada
+          proyecto.
+        </p>
+        <p class="mt-4 leading-relaxed text-white/80">
+          Contribuimos activamente al desarrollo responsable de la comunidad y a la protección del medio ambiente,
+          generando valor técnico, social y ambiental a largo plazo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal
+    titulo="Construimos espacios que cuidan el planeta, protegen a las personas y dan futuro a tus proyectos."
+    texto="Construyamos tu proyecto juntos."
+    textoBoton="Contacto"
+  />
+</Layout>

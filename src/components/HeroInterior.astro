@@ -1,0 +1,67 @@
+---
+interface Boton {
+  texto: string;
+  href: string;
+  externo?: boolean;
+  estilo?: "primario" | "secundario";
+}
+
+interface Props {
+  imagen: string;
+  alt: string;
+  frase: string;
+  titulo: string;
+  texto?: string;
+  botones?: Boton[];
+  alturaMinima?: string;
+}
+
+const { imagen, alt, frase, titulo, texto, botones, alturaMinima = "min-h-[75vh]" } = Astro.props;
+---
+
+<section class={`relative flex ${alturaMinima} items-center justify-center overflow-hidden bg-deep`} data-parallax-contenedor>
+  <img src={imagen} alt={alt} class="absolute inset-0 h-full w-full scale-110 object-cover" data-parallax />
+  <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/35"></div>
+
+  <div class="container-ancho relative z-10 py-24 text-center text-white texto-contraste">
+    <p
+      class="mx-auto max-w-4xl font-heading text-4xl font-extralight uppercase leading-[1.1] tracking-tight text-mint-deep sm:text-5xl lg:text-6xl"
+      data-entrada="zoom"
+    >
+      {frase}
+    </p>
+
+    <h1
+      class="mx-auto mt-7 max-w-2xl font-heading text-xl font-semibold text-white sm:text-2xl"
+      data-entrada
+      style="--entrada-delay: 180ms"
+    >
+      {titulo}
+    </h1>
+
+    {
+      texto && (
+        <p class="mx-auto mt-4 max-w-xl text-white/80" data-entrada style="--entrada-delay: 300ms">
+          {texto}
+        </p>
+      )
+    }
+
+    {
+      botones && botones.length > 0 && (
+        <div class="mt-9 flex flex-wrap justify-center gap-4" data-entrada style="--entrada-delay: 420ms">
+          {botones.map((boton) => (
+            <a
+              href={boton.href}
+              target={boton.externo ? "_blank" : undefined}
+              rel={boton.externo ? "noopener noreferrer" : undefined}
+              class={boton.estilo === "secundario" ? "boton-secundario" : "boton-primario"}
+            >
+              {boton.texto}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>

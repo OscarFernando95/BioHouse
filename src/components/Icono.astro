@@ -1,0 +1,121 @@
+---
+interface Props {
+  nombre:
+    | "hoja"
+    | "reciclaje"
+    | "escudo"
+    | "rayo"
+    | "casa"
+    | "engranaje"
+    | "sol"
+    | "chip"
+    | "ubicacion"
+    | "telefono"
+    | "correo"
+    | "check"
+    | "equipo"
+    | "brujula"
+    | "objetivo"
+    | "calendario";
+  class?: string;
+}
+
+const { nombre, class: clase = "h-6 w-6" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={clase}
+  aria-hidden="true"
+>
+  {nombre === "hoja" && (
+    <>
+      <path d="M5 19c8-1 13-6 14-14C11 6 6 11 5 19Z" />
+      <path d="M5 19c2-4 5-7 9-9" />
+    </>
+  )}
+  {nombre === "reciclaje" && (
+    <>
+      <path d="m7 19-2.5-4.3L7 10.4" />
+      <path d="M4.5 14.7h6.2L14 9.4" />
+      <path d="m14 5 2.5 4.3L14 13.6" />
+      <path d="M19.5 9.3h-6.2L10 14.6" />
+      <path d="m17 19-2.5 4.3" opacity="0" />
+    </>
+  )}
+  {nombre === "escudo" && <path d="M12 3.5 5 6v5.2c0 4.2 2.9 7.6 7 8.8 4.1-1.2 7-4.6 7-8.8V6l-7-2.5Z" />}
+  {nombre === "rayo" && <path d="M13 2 4.5 14h5.7L11 22l8.5-13h-5.7L13 2Z" stroke-linejoin="round" />}
+  {nombre === "casa" && (
+    <>
+      <path d="M4 11.5 12 4l8 7.5" />
+      <path d="M6 10v9.5h12V10" />
+      <path d="M10 19.5V14h4v5.5" />
+    </>
+  )}
+  {nombre === "engranaje" && (
+    <>
+      <circle cx="12" cy="12" r="3.1" />
+      <path d="M12 6.3V4M12 20v-2.3M17.7 12H20M4 12h2.3M15.7 8.3l1.6-1.6M6.7 17.3l1.6-1.6M15.7 15.7l1.6 1.6M6.7 6.7l1.6 1.6" stroke-width="2.6" />
+    </>
+  )}
+  {nombre === "sol" && (
+    <>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.5v2.3M12 19.2v2.3M21.5 12h-2.3M4.8 12H2.5M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6M18.8 18.8l-1.6-1.6M6.8 6.8 5.2 5.2" />
+    </>
+  )}
+  {nombre === "chip" && (
+    <>
+      <rect x="7" y="7" width="10" height="10" rx="1.5" />
+      <path d="M9.5 7V4M14.5 7V4M9.5 20v-3M14.5 20v-3M7 9.5H4M7 14.5H4M20 9.5h-3M20 14.5h-3" />
+    </>
+  )}
+  {nombre === "ubicacion" && (
+    <>
+      <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.3" />
+    </>
+  )}
+  {nombre === "telefono" && (
+    <path d="M6.6 3.5 9.4 9 6.9 11.3a13 13 0 0 0 6.8 6.8l2.3-2.5 5.5 2.8v3a2 2 0 0 1-2.2 2C11.9 22.7 3.3 14.1 2.5 5.7a2 2 0 0 1 2-2.2Z" />
+  )}
+  {nombre === "correo" && (
+    <>
+      <rect x="3" y="5.5" width="18" height="13" rx="2" />
+      <path d="m4 6.5 8 6.5 8-6.5" />
+    </>
+  )}
+  {nombre === "check" && <path d="m5 12.5 4.5 4.5L19 7" />}
+  {nombre === "equipo" && (
+    <>
+      <circle cx="8.5" cy="8" r="3" />
+      <circle cx="16" cy="9" r="2.4" />
+      <path d="M3.5 19.5c.6-3.4 2.7-5.2 5-5.2s4.4 1.8 5 5.2" />
+      <path d="M14.8 14.7c2 .2 3.5 1.8 4 4.8" />
+    </>
+  )}
+  {nombre === "brujula" && (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m14.5 9.5-1.7 5.3-5.3 1.7 1.7-5.3 5.3-1.7Z" />
+    </>
+  )}
+  {nombre === "objetivo" && (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.7" />
+      <circle cx="12" cy="12" r="0.9" fill="currentColor" stroke="none" />
+    </>
+  )}
+  {nombre === "calendario" && (
+    <>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </>
+  )}
+</svg>

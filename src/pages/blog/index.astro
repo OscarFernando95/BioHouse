@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroInterior from "../../components/HeroInterior.astro";
+
+const entradas = [
+  {
+    titulo: "El caos vivendi",
+    resumen:
+      "La vivienda del futuro: cómo la construcción sostenible y la economía circular pueden ayudar a resolver la crisis habitacional mundial.",
+    imagen: "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
+    href: "/blog/el-caos-vivendi",
+  },
+];
+---
+
+<Layout titulo="Blog" descripcion="Artículos de Bio House Constructora sobre construcción sostenible, economía circular y vivienda del futuro.">
+  <HeroInterior
+    imagen="/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg"
+    alt="Blog de Bio House Constructora"
+    frase="Ideas para construir un futuro sostenible"
+    titulo="Artículos sobre construcción sostenible y economía circular"
+    texto="Historias, ideas y aprendizajes de Bio House Constructora sobre la vivienda del futuro."
+  />
+
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        entradas.map((entrada, indice) => (
+          <a
+            href={entrada.href}
+            class="group flex flex-col overflow-hidden rounded-xl border border-black/5 shadow-sm shadow-black/5 transition-shadow hover:shadow-lg"
+            data-reveal={["izquierda", "abajo", "derecha"][indice % 3]}
+            style={`--reveal-delay: ${indice * 120}ms`}
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src={entrada.imagen}
+                alt={entrada.titulo}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <h2 class="font-heading text-lg font-semibold group-hover:text-primary-dark">{entrada.titulo}</h2>
+              <p class="mt-2 text-sm leading-relaxed">{entrada.resumen}</p>
+              <span class="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-primary">
+                Leer más »
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

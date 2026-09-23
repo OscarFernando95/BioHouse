@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+---
+
+<Layout
+  titulo="Ingeniería"
+  descripcion="Ingeniería aplicada para construir con seguridad y eficiencia: viabilidad técnica, seguridad estructural y cumplimiento normativo."
+>
+  <!-- Héroe -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-entrada>
+        <p class="eyebrow">Ingeniería aplicada</p>
+        <h1 class="mt-4 font-heading text-4xl font-extrabold leading-tight sm:text-5xl">
+          Ingeniería aplicada para construir con seguridad y eficiencia
+        </h1>
+        <p class="mt-6 leading-relaxed">
+          Desarrollamos soluciones de ingeniería que garantizan viabilidad técnica, seguridad estructural y
+          cumplimiento normativo en cada proyecto.
+        </p>
+        <a href="/contacto" class="boton-primario mt-8">Agenda una asesoría técnica</a>
+      </div>
+      <div class="overflow-hidden rounded-xl" data-entrada style="--entrada-delay: 150ms">
+        <img src="/images/IMG-20210228-WA0015.jpg" alt="Ingeniería aplicada Bio House" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- En qué consiste -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="order-2 overflow-hidden rounded-xl lg:order-1" data-reveal="izquierda">
+        <img src="/images/IMG_20210415_150426760-scaled.jpg" alt="Servicio de ingeniería" class="h-full w-full object-cover" />
+      </div>
+      <div class="order-1 lg:order-2" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿En qué consiste nuestro servicio de Ingeniería?</h2>
+        <p class="mt-4 leading-relaxed">
+          Acompañamos cada proyecto con estudios técnicos, diseño estructural y supervisión en obra, integrando
+          nuestro sistema constructivo con los estándares de la ingeniería tradicional.
+        </p>
+        <a href="/contacto" class="boton-oscuro mt-8">Hablemos de tu proyecto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enfoque -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-reveal="izquierda">
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">Nuestro enfoque en ingeniería</h2>
+        <p class="mt-4 leading-relaxed">
+          Combinamos rigor técnico y eficiencia constructiva para asegurar que cada estructura sea segura, duradera y
+          viable económicamente.
+        </p>
+        <a href="/contacto" class="boton-primario mt-8">Consulta con un ingeniero</a>
+      </div>
+      <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <img
+          src="/images/240_F_445467139_pTBW8OrcgV7GDwIeuOnMjmMLJRFMdZiv.jpg"
+          alt="Enfoque en ingeniería"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Soluciones -->
+  <section class="bg-ink py-20 text-white sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="order-2 overflow-hidden rounded-xl lg:order-1" data-reveal="izquierda">
+        <img src="/images/IMG_20210415_150321463-scaled.jpg" alt="Soluciones de ingeniería" class="h-full w-full object-cover" />
+      </div>
+      <div class="order-1 lg:order-2" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <h2 class="font-heading text-4xl font-bold text-white sm:text-5xl">¿Qué tipo de soluciones ofrecemos?</h2>
+        <p class="mt-4 leading-relaxed text-white/80">
+          Estudios técnicos, diseño estructural, coordinación con arquitectura y sistemas sostenibles, y supervisión
+          de obra alineados con la normativa vigente.
+        </p>
+        <a href="/contacto" class="boton-primario mt-8">¿Tu proyecto requiere ingeniería especializada?</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal
+    titulo="Ingeniería que respalda cada decisión constructiva"
+    texto="Trabajamos para que cada proyecto se construya sobre bases técnicas sólidas, eficientes y responsables."
+    textoBoton="Inicia tu proyecto con nosotros"
+  />
+</Layout>

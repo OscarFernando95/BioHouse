@@ -1,0 +1,234 @@
+---
+interface Boton {
+  texto: string;
+  href: string;
+  externo?: boolean;
+}
+
+interface Diapositiva {
+  imagen: string;
+  alt: string;
+  frase: string;
+  titulo: string;
+  texto: string;
+  boton: Boton;
+  botonSecundario?: Boton;
+}
+
+interface Props {
+  slides: Diapositiva[];
+}
+
+const { slides } = Astro.props;
+const primera = slides[0];
+---
+
+<section
+  id="carrusel-hero"
+  class="relative flex min-h-[92vh] items-center justify-center overflow-hidden bg-deep"
+  data-parallax-contenedor
+  aria-roledescription="carrusel"
+  aria-label="Presentación de Bio House Constructora"
+>
+  <div class="absolute inset-0">
+    {
+      slides.map((slide, i) => (
+        <img
+          src={slide.imagen}
+          alt={slide.alt}
+          data-capa
+          data-index={i}
+          data-parallax
+          class="absolute inset-0 h-full w-full scale-110 object-cover"
+          style={`opacity: ${i === 0 ? 1 : 0}`}
+        />
+      ))
+    }
+    <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/25"></div>
+  </div>
+
+  <div class="container-ancho relative z-20 py-28 text-center text-white">
+    <div data-contenido-carrusel class="texto-contraste">
+      <p
+        class="mx-auto max-w-5xl font-heading text-4xl font-extralight uppercase leading-[1.1] tracking-tight text-mint-deep sm:text-5xl lg:text-6xl"
+        data-frase
+      >
+        {primera.frase}
+      </p>
+      <h1 class="mx-auto mt-7 max-w-2xl font-heading text-xl font-semibold text-white sm:text-2xl" data-titulo>
+        {primera.titulo}
+      </h1>
+      <p class="mx-auto mt-4 max-w-xl text-white/80" data-texto>{primera.texto}</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-4" data-botones>
+        <a href={primera.boton.href} class="boton-primario">{primera.boton.texto}</a>
+        {primera.botonSecundario && (
+          <a
+            href={primera.botonSecundario.href}
+            target={primera.botonSecundario.externo ? "_blank" : undefined}
+            rel={primera.botonSecundario.externo ? "noopener noreferrer" : undefined}
+            class="boton-secundario"
+          >
+            {primera.botonSecundario.texto}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-8 z-20 flex items-center justify-center gap-6">
+    <button
+      type="button"
+      data-anterior
+      aria-label="Diapositiva anterior"
+      class="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-ink"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
+        <path d="m15 5-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <div data-puntos class="flex items-center gap-2"></div>
+    <button
+      type="button"
+      data-siguiente
+      aria-label="Siguiente diapositiva"
+      class="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:bg-white hover:text-ink"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
+        <path d="m9 5 7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script define:vars={{ diapositivas: slides }}>
+  const seccion = document.getElementById("carrusel-hero");
+
+  if (seccion) {
+    const capas = Array.from(seccion.querySelectorAll("[data-capa]"));
+    const contenido = seccion.querySelector("[data-contenido-carrusel]");
+    const elFrase = seccion.querySelector("[data-frase]");
+    const elTitulo = seccion.querySelector("[data-titulo]");
+    const elTexto = seccion.querySelector("[data-texto]");
+    const elBotones = seccion.querySelector("[data-botones]");
+    const contenedorPuntos = seccion.querySelector("[data-puntos]");
+    const botonAnterior = seccion.querySelector("[data-anterior]");
+    const botonSiguiente = seccion.querySelector("[data-siguiente]");
+    const prefiereMovimientoReducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let indiceActual = 0;
+    let temporizador = null;
+
+    diapositivas.forEach((_, i) => {
+      const punto = document.createElement("button");
+      punto.type = "button";
+      punto.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}`);
+      punto.className =
+        "h-2.5 rounded-full bg-white/40 transition-all duration-300 " + (i === 0 ? "w-6 bg-white" : "w-2.5");
+      punto.dataset.indice = String(i);
+      punto.addEventListener("click", () => {
+        irA(i);
+        reiniciarAutoplay();
+      });
+      contenedorPuntos.appendChild(punto);
+    });
+
+    const puntos = Array.from(contenedorPuntos.querySelectorAll("button"));
+
+    function actualizarPuntos() {
+      puntos.forEach((btn, i) => {
+        const activo = i === indiceActual;
+        btn.className =
+          "h-2.5 rounded-full transition-all duration-300 " + (activo ? "w-6 bg-white" : "w-2.5 bg-white/40");
+      });
+    }
+
+    function crearBoton(datos, esPrincipal) {
+      const enlace = document.createElement("a");
+      enlace.href = datos.href;
+      enlace.className = esPrincipal ? "boton-primario" : "boton-secundario";
+      enlace.textContent = datos.texto;
+      if (datos.externo) {
+        enlace.target = "_blank";
+        enlace.rel = "noopener noreferrer";
+      }
+      if (!prefiereMovimientoReducido) {
+        enlace.classList.add("pulso");
+      }
+      return enlace;
+    }
+
+    function actualizarContenido(diapositiva) {
+      elFrase.textContent = diapositiva.frase;
+      elTitulo.textContent = diapositiva.titulo;
+      elTexto.textContent = diapositiva.texto;
+      elBotones.innerHTML = "";
+      elBotones.appendChild(crearBoton(diapositiva.boton, true));
+      if (diapositiva.botonSecundario) {
+        elBotones.appendChild(crearBoton(diapositiva.botonSecundario, false));
+      }
+    }
+
+    function reproducirEntrada() {
+      if (prefiereMovimientoReducido) return;
+      const hijos = Array.from(contenido.children);
+      hijos.forEach((el) => {
+        el.style.animation = "none";
+      });
+      void contenido.offsetWidth;
+      hijos.forEach((el) => {
+        el.style.animation = "";
+      });
+    }
+
+    function irA(indice) {
+      indiceActual = (indice + diapositivas.length) % diapositivas.length;
+      capas.forEach((capa) => {
+        capa.style.opacity = Number(capa.dataset.index) === indiceActual ? "1" : "0";
+      });
+      actualizarContenido(diapositivas[indiceActual]);
+      actualizarPuntos();
+      reproducirEntrada();
+    }
+
+    function siguiente() {
+      irA(indiceActual + 1);
+    }
+
+    function anterior() {
+      irA(indiceActual - 1);
+    }
+
+    botonSiguiente?.addEventListener("click", () => {
+      siguiente();
+      reiniciarAutoplay();
+    });
+    botonAnterior?.addEventListener("click", () => {
+      anterior();
+      reiniciarAutoplay();
+    });
+
+    function iniciarAutoplay() {
+      if (prefiereMovimientoReducido || diapositivas.length < 2) return;
+      temporizador = window.setInterval(siguiente, 7000);
+    }
+
+    function detenerAutoplay() {
+      if (temporizador) {
+        window.clearInterval(temporizador);
+        temporizador = null;
+      }
+    }
+
+    function reiniciarAutoplay() {
+      detenerAutoplay();
+      iniciarAutoplay();
+    }
+
+    seccion.addEventListener("mouseenter", detenerAutoplay);
+    seccion.addEventListener("mouseleave", iniciarAutoplay);
+    seccion.addEventListener("focusin", detenerAutoplay);
+    seccion.addEventListener("focusout", iniciarAutoplay);
+
+    iniciarAutoplay();
+  }
+</script>

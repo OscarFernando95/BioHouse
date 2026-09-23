@@ -1,0 +1,302 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import HeroCarrusel from "../components/HeroCarrusel.astro";
+import Icono from "../components/Icono.astro";
+import { enlaceWhatsapp } from "../data/site.js";
+
+const diapositivas = [
+  {
+    imagen: "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
+    alt: "Vivienda sostenible construida por Bio House",
+    frase: "Sistema constructivo con plástico reciclado",
+    titulo: "Bio House, la forma inteligente de construir",
+    texto: "Construimos viviendas ecológicas con plástico reciclado en Colombia.",
+    boton: { texto: "Ver servicios", href: "/servicios" },
+    botonSecundario: { texto: "Cuéntanos tu proyecto", href: enlaceWhatsapp(), externo: true },
+  },
+  {
+    imagen: "/images/IMG-20210327-WA0020.jpg",
+    alt: "Ingeniería y arquitectura aplicada en obra",
+    frase: "Servicios integrales",
+    titulo: "Arquitectura, ingeniería, energía solar y domótica",
+    texto: "Un solo modelo constructivo, sostenible, eficiente e inteligente.",
+    boton: { texto: "Conoce nuestros servicios", href: "/servicios" },
+  },
+  {
+    imagen: "/images/capu1-2.png",
+    alt: "Ecowasi, hotel construido con el sistema Bloque-plas en Capurganá",
+    frase: "Proyectos destacados",
+    titulo: "Ecowasi, un hotel construido con plástico recuperado",
+    texto: "Hospedaje sostenible en Capurganá, construido con el sistema Bloque-plas.",
+    boton: { texto: "Ver proyectos", href: "#proyectos" },
+  },
+  {
+    imagen: "/images/pexels-hoan-ng-c-510735-6961085-scaled.jpg",
+    alt: "Sistema de energía solar en proyecto Bio House",
+    frase: "Energía limpia",
+    titulo: "Reducimos huella de carbono en cada proyecto",
+    texto: "Sistemas de energía solar y construcción circular para un futuro sostenible.",
+    boton: { texto: "Conoce la energía solar", href: "/energia-solar" },
+  },
+];
+
+const proyectos = [
+  {
+    imagen: "/images/capu1-3.png",
+    titulo: "ECOWASI INTERIOR",
+    texto: "Hermoso hotel en Capurganá construido con el sistema Bloque-plas.",
+    revelado: "izquierda" as const,
+  },
+  {
+    imagen: "/images/capu1-2.png",
+    titulo: "ECOWASI EXTERIOR",
+    texto: "Edificación de dos plantas cumpliendo con todas las normativas.",
+    revelado: "abajo" as const,
+  },
+  {
+    imagen: "/images/capu1-1.png",
+    titulo: "CUNDINAMARCA",
+    texto: "Casa familiar campestre con un concepto abierto combinado en vidriera.",
+    revelado: "derecha" as const,
+  },
+];
+
+const diferenciadores = [
+  {
+    numero: "01",
+    icono: "hoja" as const,
+    titulo: "Construcción sostenible con impacto ambiental real",
+    texto:
+      "Nuestro sistema transforma plástico recuperado en bloques constructivos, evitando que miles de kilos de residuos terminen contaminando suelos, ríos y océanos. Cada proyecto reduce la huella de carbono y contribuye activamente a una economía circular.",
+  },
+  {
+    numero: "02",
+    icono: "rayo" as const,
+    titulo: "Eficiencia constructiva y ahorro en costos",
+    texto:
+      "Los bloques modulares permiten una instalación más rápida y precisa, reduciendo tiempos de obra, consumo de materiales tradicionales y costos asociados a mano de obra, sin sacrificar resistencia ni durabilidad.",
+  },
+  {
+    numero: "03",
+    icono: "escudo" as const,
+    titulo: "Seguridad, durabilidad y confort",
+    texto:
+      "El sistema ofrece estabilidad estructural, buen comportamiento frente al fuego cuando está recubierto, y propiedades de aislamiento térmico y acústico que mejoran el confort interior y la vida útil de la edificación.",
+  },
+];
+
+const razones = [
+  {
+    icono: "hoja" as const,
+    titulo: "Construimos con propósito ambiental",
+    texto:
+      "No solo edificamos viviendas y proyectos: recuperamos plástico y lo convertimos en soluciones reales, reduciendo la contaminación y generando impacto positivo medible en el territorio.",
+    revelado: "izquierda" as const,
+  },
+  {
+    icono: "engranaje" as const,
+    titulo: "Innovación constructiva probada y eficiente",
+    texto:
+      "Nuestro sistema constructivo combina tecnología, eficiencia y experiencia, permitiendo obras más rápidas, optimizadas en costos y adaptadas a las necesidades actuales sin comprometer calidad ni seguridad.",
+    revelado: "abajo" as const,
+  },
+  {
+    icono: "brujula" as const,
+    titulo: "Visión integral y acompañamiento experto",
+    texto:
+      "Acompañamos a nuestros clientes desde el diseño hasta la ejecución, con un enfoque estratégico que integra sostenibilidad, viabilidad técnica y rentabilidad, respaldado por años de experiencia en el sector.",
+    revelado: "derecha" as const,
+  },
+];
+
+const testimonios = [
+  {
+    imagen: "/images/testimonial-01-1.jpg",
+    texto:
+      "Elegimos a Bio House Constructora porque su propuesta va más allá de construir. Saber que nuestra vivienda ayudó a recuperar plástico y reducir impacto ambiental nos dio mucha tranquilidad. El proceso fue rápido, claro y muy profesional.",
+    autor: "Cliente de vivienda sostenible",
+    revelado: "izquierda" as const,
+  },
+  {
+    imagen: "/images/testimonial-02-1.jpg",
+    texto:
+      "Nos sorprendió la eficiencia del sistema constructivo y el acompañamiento del equipo. Cumplieron tiempos, optimizaron costos y entregaron una solución sólida, innovadora y responsable con el medio ambiente.",
+    autor: "Cliente institucional / proyecto productivo",
+    revelado: "derecha" as const,
+  },
+];
+---
+
+<Layout titulo="Bio House Constructora" descripcion="Construimos viviendas ecológicas con plástico reciclado en Colombia. Sistemas constructivos sostenibles, eficientes y de rápida instalación.">
+  <HeroCarrusel slides={diapositivas} />
+
+  <!-- Descripción general -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div data-reveal="izquierda">
+        <p class="eyebrow">Quiénes somos</p>
+        <p class="mt-4 font-heading text-2xl font-semibold text-ink sm:text-3xl">
+          Soluciones constructivas innovadoras con propósito ambiental y empresarial.
+        </p>
+      </div>
+      <div class="space-y-5 text-base leading-relaxed" data-reveal="derecha" style="--reveal-delay: 100ms">
+        <p>
+          En Bio House Constructora desarrollamos soluciones constructivas innovadoras que integran sostenibilidad
+          ambiental, tecnología y visión empresarial. Transformamos plásticos recuperados en sistemas constructivos
+          eficientes, resistentes y de bajo impacto ambiental.
+        </p>
+        <p>
+          Con más de 5 años de experiencia, lideramos un modelo que responde a los retos actuales de la construcción:
+          reducción de huella de carbono, eficiencia en tiempos y generación de vivienda con impacto social real.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="abajo">
+      <h2 class="max-w-2xl font-heading text-4xl font-bold sm:text-5xl">
+        Conoce nuestro equipo de profesionales
+      </h2>
+      <a href="/quienes-somos" class="boton-oscuro">Cuéntanos tu proyecto</a>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" class="scroll-mt-20 bg-ink py-20 text-white sm:py-24">
+    <div class="container-ancho">
+      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
+        <h2 class="font-heading text-4xl font-bold text-white sm:text-5xl">Algunos Proyectos</h2>
+        <a href="/servicios" class="font-heading font-semibold text-primary hover:text-mint-deep">Servicios →</a>
+      </div>
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        {
+          proyectos.map((proyecto, indice) => (
+            <article
+              class="group overflow-hidden rounded-xl bg-white/5"
+              data-reveal={proyecto.revelado}
+              style={`--reveal-delay: ${indice * 120}ms`}
+            >
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src={proyecto.imagen}
+                  alt={proyecto.titulo}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-heading text-lg font-semibold text-white">{proyecto.titulo}</h3>
+                <p class="mt-2 text-sm text-white/70">{proyecto.texto}</p>
+                <a href="/contacto" class="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-primary hover:text-mint-deep">
+                  Contacto
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué hacemos la diferencia -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div data-reveal="izquierda">
+        <p class="eyebrow">Seguridad estructural</p>
+        <h2 class="mt-4 font-heading text-4xl font-bold sm:text-5xl">¿Por qué hacemos la diferencia?</h2>
+        <p class="mt-5 leading-relaxed">
+          El sistema constructivo de Bio House Constructora, basado en bloques fabricados con plástico recuperado,
+          ofrece un comportamiento seguro y controlado frente al fuego, alineado con los principios de protección
+          pasiva en la edificación.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          Ante la exposición a altas temperaturas, los bloques no generan combustión violenta ni propagación
+          acelerada de la llama. El material se funde de manera progresiva, manteniendo la estabilidad del sistema y
+          reduciendo el riesgo de colapso inmediato, lo que favorece tiempos de respuesta y evacuación más seguros.
+        </p>
+      </div>
+      <div class="grid gap-6">
+        {
+          diferenciadores.map((item, indice) => (
+            <div
+              class="flex gap-5 rounded-xl border border-black/5 bg-mint/60 p-6"
+              data-reveal="derecha"
+              style={`--reveal-delay: ${indice * 120}ms`}
+            >
+              <div class="flex shrink-0 flex-col items-center gap-2">
+                <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Icono nombre={item.icono} class="h-6 w-6" />
+                </span>
+                <span class="cifra text-2xl text-primary/40">{item.numero}</span>
+              </div>
+              <div>
+                <h3 class="font-heading text-lg font-semibold">{item.titulo}</h3>
+                <p class="mt-2 text-sm leading-relaxed">{item.texto}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué elegirnos -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho">
+      <div class="mx-auto max-w-2xl text-center" data-reveal>
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿Por qué elegirnos?</h2>
+      </div>
+      <div class="mt-14 grid gap-8 md:grid-cols-3">
+        {
+          razones.map((razon, indice) => (
+            <div
+              class="rounded-xl bg-white p-7 shadow-sm shadow-black/5"
+              data-reveal={razon.revelado}
+              style={`--reveal-delay: ${indice * 120}ms`}
+            >
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icono nombre={razon.icono} class="h-6 w-6" />
+              </span>
+              <h3 class="mt-4 font-heading text-lg font-semibold text-primary-dark">{razon.titulo}</h3>
+              <p class="mt-3 text-sm leading-relaxed">{razon.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho">
+      <h2 class="text-center font-heading text-4xl font-bold sm:text-5xl" data-reveal>¿Qué dicen nuestros clientes?</h2>
+      <div class="mt-14 grid gap-8 md:grid-cols-2">
+        {
+          testimonios.map((testimonio, indice) => (
+            <figure
+              class="flex flex-col gap-5 rounded-xl border border-black/5 p-8 sm:flex-row sm:items-start"
+              data-reveal={testimonio.revelado}
+              style={`--reveal-delay: ${indice * 150}ms`}
+            >
+              <img
+                src={testimonio.imagen}
+                alt={testimonio.autor}
+                loading="lazy"
+                class="h-16 w-16 shrink-0 rounded-full object-cover"
+              />
+              <div>
+                <blockquote class="italic leading-relaxed text-ink">“{testimonio.texto}”</blockquote>
+                <figcaption class="mt-3 text-sm font-semibold text-primary-dark">{testimonio.autor}</figcaption>
+              </div>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal />
+</Layout>

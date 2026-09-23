@@ -1,0 +1,21 @@
+---
+interface Props {
+  titulo?: string;
+  texto?: string;
+  textoBoton?: string;
+}
+
+const {
+  titulo = "Haz de la sostenibilidad un estilo de vida",
+  texto = "Contáctanos hoy y descubre cómo transformar la casa de tus sueños en una fantástica realidad.",
+  textoBoton = "Hablemos de tu proyecto",
+} = Astro.props;
+---
+
+<section class="bg-primary py-20 sm:py-24">
+  <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="abajo">
+    <h2 class="max-w-2xl font-heading text-4xl font-bold text-white sm:text-5xl">{titulo}</h2>
+    <p class="max-w-xl text-white/85">{texto}</p>
+    <a href="/contacto" class="boton bg-white text-primary-dark hover:bg-mint">{textoBoton}</a>
+  </div>
+</section>
