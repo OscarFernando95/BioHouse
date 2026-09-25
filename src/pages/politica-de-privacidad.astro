@@ -1,67 +1,62 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { sitio } from "../data/site.js";
 
 const secciones = [
   {
-    titulo: "Quiénes somos",
-    parrafos: ["La dirección de nuestro sitio web es: https://www.biohouseconstructora.com."],
-  },
-  {
-    titulo: "Comentarios",
+    titulo: "Responsable del tratamiento",
     parrafos: [
-      "Cuando los visitantes dejan comentarios en el sitio, recopilamos los datos que se muestran en el formulario de comentarios, así como la dirección IP del visitante y la cadena de agentes de usuario del navegador para ayudar a la detección de spam.",
-      "Una cadena anónima creada a partir de tu dirección de correo electrónico (también llamada hash) puede ser proporcionada a un servicio de verificación de avatares para comprobar si la estás usando. Después de la aprobación de tu comentario, la imagen de tu perfil es visible para el público en el contexto de tu comentario.",
+      `${sitio.nombre}, con domicilio en ${sitio.direccion}, es la responsable del tratamiento de los datos personales que se recogen a través de este sitio web (https://www.biohouseconstructora.com).`,
     ],
   },
   {
-    titulo: "Medios",
+    titulo: "Qué datos recopilamos y para qué los usamos",
     parrafos: [
-      "Si subes imágenes al sitio, deberías evitar subir imágenes con datos de ubicación (GPS EXIF) incluidos. Los visitantes del sitio pueden descargar y extraer cualquier dato de ubicación de las imágenes del sitio.",
+      "Este sitio no tiene registro de usuarios, comentarios ni carrito de compras. Los únicos datos personales que podemos llegar a conocer son los que tú decides entregarnos voluntariamente al escribirnos: a través del formulario de contacto, por WhatsApp, por correo electrónico o por teléfono (nombre, correo electrónico, teléfono y el mensaje que nos compartas).",
+      "El formulario de la página de Contacto no envía tus datos a ningún servidor propio: al enviarlo, tu navegador arma un mensaje y abre WhatsApp con ese texto pre-cargado para que tú decidas si lo envías. Desde ese momento, la conversación queda sujeta a la política de privacidad de WhatsApp.",
+      "Usamos los datos que nos compartes únicamente para responder tu solicitud y darte información sobre nuestros servicios de construcción sostenible.",
     ],
   },
   {
-    titulo: "Cookies",
+    titulo: "Cookies y tecnologías de seguimiento",
     parrafos: [
-      "Si dejas un comentario en nuestro sitio puedes elegir guardar tu nombre, dirección de correo electrónico y web en cookies. Esto es para tu comodidad, para que no tengas que volver a rellenar tus datos cuando dejes otro comentario. Estas cookies tendrán una duración de un año.",
-      "Si tienes una cuenta y te conectas a este sitio, instalaremos una cookie temporal para determinar si tu navegador acepta cookies. Esta cookie no contiene datos personales y se elimina al cerrar el navegador.",
-      "Cuando accedas, también instalaremos varias cookies para guardar tu información de acceso y tus opciones de visualización de pantalla. Las cookies de acceso duran dos días, y las cookies de opciones de pantalla duran un año. Si seleccionas «Recordarme», tu acceso perdurará durante dos semanas. Si sales de tu cuenta, las cookies de acceso se eliminarán.",
+      "Este sitio no utiliza cookies propias ni almacenamiento local (localStorage) para rastrear tu navegación, y actualmente no tiene instalado ningún servicio de analítica ni de publicidad de terceros.",
+      "El proveedor de alojamiento donde vive este sitio puede registrar de forma automática datos técnicos básicos (dirección IP, fecha y hora de acceso, tipo de navegador) como parte del funcionamiento normal de cualquier servidor web, sin que Bio House Constructora acceda a esa información de forma individualizada.",
     ],
   },
   {
-    titulo: "Contenido incrustado de otros sitios web",
+    titulo: "Enlaces y redes sociales de terceros",
     parrafos: [
-      "Los artículos de este sitio pueden incluir contenido incrustado (por ejemplo, vídeos, imágenes, artículos, etc.). El contenido incrustado de otras webs se comporta exactamente de la misma manera que si el visitante hubiera visitado la otra web.",
-      "Estas web pueden recopilar datos sobre ti, utilizar cookies, incrustar un seguimiento adicional de terceros y supervisar tu interacción con ese contenido incrustado, incluido el seguimiento de tu interacción si tienes una cuenta y estás conectado a esa web.",
+      "Este sitio incluye enlaces a WhatsApp y a nuestras redes sociales (Facebook, Instagram, YouTube, LinkedIn, TikTok y X). Al hacer clic en ellos sales de nuestro sitio y quedas sujeto a la política de privacidad y a las cookies propias de cada una de esas plataformas.",
     ],
-  },
-  {
-    titulo: "Con quién compartimos tus datos",
-    parrafos: ["Si solicitas un restablecimiento de contraseña, tu dirección IP será incluida en el correo electrónico de restablecimiento."],
   },
   {
     titulo: "Cuánto tiempo conservamos tus datos",
     parrafos: [
-      "Si dejas un comentario, el comentario y sus metadatos se conservan indefinidamente. Esto es para que podamos reconocer y aprobar comentarios sucesivos automáticamente, en lugar de mantenerlos en una cola de moderación.",
-      "De los usuarios que se registran en nuestro sitio, también almacenamos la información personal que proporcionan en su perfil de usuario. Todos los usuarios pueden ver, editar o eliminar su información personal en cualquier momento, excepto que no pueden cambiar su nombre de usuario.",
+      "Conservamos la información que nos compartas por correo o WhatsApp únicamente durante el tiempo necesario para atender tu solicitud y por el plazo que exija la ley, después del cual la eliminamos o anonimizamos.",
     ],
   },
   {
-    titulo: "Qué derechos tienes sobre tus datos",
+    titulo: "Tus derechos (Habeas Data)",
     parrafos: [
-      "Si tienes una cuenta o has dejado comentarios en este sitio, puedes solicitar recibir un archivo de exportación de los datos personales que tenemos sobre ti, incluyendo cualquier dato que nos hayas proporcionado. También puedes solicitar que eliminemos cualquier dato personal que tengamos sobre ti, salvo el que estemos obligados a conservar con fines administrativos, legales o de seguridad.",
+      "De acuerdo con la Ley 1581 de 2012 y demás normas colombianas sobre protección de datos personales, puedes conocer, actualizar, rectificar y solicitar la eliminación de los datos personales que nos hayas entregado, así como revocar la autorización otorgada para su tratamiento.",
+      `Para ejercer estos derechos escríbenos a ${sitio.email} o al ${sitio.telefono}.`,
     ],
   },
   {
-    titulo: "Dónde se envían tus datos",
-    parrafos: ["Los comentarios de los visitantes pueden ser revisados por un servicio de detección automática de spam."],
+    titulo: "Cambios en esta política",
+    parrafos: [
+      "Podemos actualizar esta política de privacidad cuando cambien nuestras prácticas o la normativa aplicable. Te recomendamos revisarla periódicamente.",
+    ],
   },
 ];
 ---
 
-<Layout titulo="Política de privacidad" descripcion="Política de privacidad de Bio House Constructora.">
+<Layout titulo="Política de privacidad" descripcion="Política de privacidad de Bio House Constructora: qué datos recopilamos, cómo los usamos y tus derechos.">
   <section class="bg-mint py-20 sm:py-24">
     <div class="container-ancho max-w-3xl" data-entrada>
       <h1 class="font-heading text-4xl font-extrabold sm:text-5xl">Política de privacidad</h1>
+      <p class="mt-4 text-sm text-ink/60">Última actualización: 24 de septiembre de 2026</p>
     </div>
   </section>
 
