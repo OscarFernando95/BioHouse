@@ -90,6 +90,7 @@ import { sitio, redesSociales, enlaceWhatsapp } from "../data/site.js";
             <textarea id="mensaje" name="mensaje" rows="4" required class="w-full rounded-md border border-black/15 px-4 py-3 text-sm outline-none focus:border-primary"></textarea>
           </div>
           <button type="submit" class="boton-primario w-full">Enviar mensaje</button>
+          <p id="estado-formulario" class="hidden text-sm" role="status"></p>
         </form>
       </div>
     </div>
@@ -108,15 +109,42 @@ import { sitio, redesSociales, enlaceWhatsapp } from "../data/site.js";
 
 <script>
   const formulario = document.getElementById("formulario-contacto") as HTMLFormElement | null;
+  const estado = document.getElementById("estado-formulario") as HTMLParagraphElement | null;
+  const boton = formulario?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const numeroWhatsapp = "573146231387";
 
-  formulario?.addEventListener("submit", (evento) => {
+  function mostrarEstado(mensaje: string, esError: boolean) {
+    if (!estado) return;
+    estado.textContent = mensaje;
+    estado.classList.remove("hidden", "text-red-600", "text-green-700");
+    estado.classList.add(esError ? "text-red-600" : "text-green-700");
+  }
+
+  formulario?.addEventListener("submit", async (evento) => {
     evento.preventDefault();
     const datos = new FormData(formulario);
     const nombre = datos.get("nombre");
     const correo = datos.get("correo");
     const telefono = datos.get("telefono");
     const mensaje = datos.get("mensaje");
+
+    if (boton) boton.disabled = true;
+    mostrarEstado("Enviando mensaje...", false);
+
+    try {
+      const respuesta = await fetch("/api/contacto", {
+        method: "POST",
+        body: datos,
+      });
+
+      if (!respuesta.ok) throw new Error("Fallo el envío");
+
+      mostrarEstado("¡Mensaje enviado! Te contactaremos pronto.", false);
+    } catch {
+      mostrarEstado("No pudimos enviar el correo, pero puedes escribirnos por WhatsApp.", true);
+    } finally {
+      if (boton) boton.disabled = false;
+    }
 
     const texto = `Hola Bio House, mi nombre es ${nombre}.\nCorreo: ${correo}\nTeléfono: ${telefono}\nMensaje: ${mensaje}`;
     window.open(`https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(texto)}`, "_blank", "noopener,noreferrer");
