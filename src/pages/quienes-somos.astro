@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import HeroInterior from "../components/HeroInterior.astro";
 import Icono from "../components/Icono.astro";
+import { obtenerImagen } from "../utils/imagenes";
 
 const equipo = [
   "/images/20251231_222217-IMG_STYLE-150x150.jpg",
@@ -93,9 +95,10 @@ const valores = [
       <div class="grid grid-cols-2 gap-5 sm:grid-cols-4 lg:grid-cols-2" data-reveal="derecha" style="--reveal-delay: 100ms">
         {
           equipo.map((foto) => (
-            <img
-              src={foto}
+            <Image
+              src={obtenerImagen(foto)}
               alt="Miembro del equipo de Bio House Constructora"
+              format="webp"
               loading="lazy"
               class="aspect-square w-full rounded-full object-cover shadow-md shadow-black/10"
             />

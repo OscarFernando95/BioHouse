@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import HeroCarrusel from "../components/HeroCarrusel.astro";
 import Icono from "../components/Icono.astro";
 import { enlaceWhatsapp } from "../data/site.js";
+import { obtenerImagen } from "../utils/imagenes";
 
 const diapositivas = [
   {
@@ -180,9 +182,10 @@ const testimonios = [
               style={`--reveal-delay: ${indice * 120}ms`}
             >
               <div class="aspect-[4/3] overflow-hidden">
-                <img
-                  src={proyecto.imagen}
+                <Image
+                  src={obtenerImagen(proyecto.imagen)}
                   alt={proyecto.titulo}
+                  format="webp"
                   loading="lazy"
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -281,9 +284,10 @@ const testimonios = [
               data-reveal={testimonio.revelado}
               style={`--reveal-delay: ${indice * 150}ms`}
             >
-              <img
-                src={testimonio.imagen}
+              <Image
+                src={obtenerImagen(testimonio.imagen)}
                 alt={testimonio.autor}
+                format="webp"
                 loading="lazy"
                 class="h-16 w-16 shrink-0 rounded-full object-cover"
               />

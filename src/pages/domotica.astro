@@ -1,5 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import imagenHero from "../assets/images/full_domotica.webp";
+import imagenControl from "../assets/images/revista-s360-domotica.webp";
+import imagenServicio from "../assets/images/full_domotica_2.webp";
+import imagenInteligente from "../assets/images/full_domotica_4.webp";
 ---
 
 <Layout
@@ -8,11 +13,15 @@ import Layout from "../layouts/Layout.astro";
 >
   <!-- Héroe -->
   <section class="relative flex min-h-[70vh] items-center overflow-hidden bg-deep" data-parallax-contenedor>
-    <img
-      src="/images/full_domotica.webp"
+    <Image
+      src={imagenHero}
       alt="Domótica inteligente Bio House"
+      format="webp"
+      quality={78}
       class="absolute inset-0 h-full w-full scale-110 object-cover"
       data-parallax
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/20"></div>
     <div class="container-ancho relative py-20 text-white texto-contraste" data-entrada>
@@ -38,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
         <a href="/contacto" class="boton-oscuro mt-8">Habla con un especialista</a>
       </div>
       <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
-        <img src="/images/revista-s360-domotica.webp" alt="Control total con domótica" class="h-full w-full object-cover" />
+        <Image src={imagenControl} alt="Control total con domótica" width={900} format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>
@@ -47,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
   <section class="bg-mint py-20 sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="order-2 overflow-hidden rounded-xl lg:order-1" data-reveal="izquierda">
-        <img src="/images/full_domotica_2.webp" alt="Servicio de domótica" class="h-full w-full object-cover" />
+        <Image src={imagenServicio} alt="Servicio de domótica" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
       <div class="order-1 lg:order-2" data-reveal="derecha" style="--reveal-delay: 100ms">
         <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿En qué consiste nuestro servicio de Domótica?</h2>
@@ -72,7 +81,7 @@ import Layout from "../layouts/Layout.astro";
         <a href="/contacto" class="boton-oscuro mt-8">Inicia tu proyecto inteligente</a>
       </div>
       <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
-        <img src="/images/full_domotica_4.webp" alt="Domótica inteligente para el hogar" class="h-full w-full object-cover" />
+        <Image src={imagenInteligente} alt="Domótica inteligente para el hogar" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>

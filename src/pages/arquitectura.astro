@@ -1,7 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import Icono from "../components/Icono.astro";
+import { obtenerImagen } from "../utils/imagenes";
+import imagenEnfoque from "../assets/images/IMG-20210424-WA0024-1024x663.jpg";
+import imagenTipos from "../assets/images/IMG-20210429-WA0021-1024x576.jpg";
+import imagenObra from "../assets/images/IMG_0332.jpg";
 
 const pasos = [
   "Diagnóstico y asesoría inicial",
@@ -92,9 +97,10 @@ const beneficios = [
             data-reveal={indice % 2 === 0 ? "izquierda" : "derecha"}
             style={`--reveal-delay: ${indice * 90}ms`}
           >
-            <img
-              src={foto}
+            <Image
+              src={obtenerImagen(foto)}
               alt="Proyecto de arquitectura Bio House"
+              format="webp"
               loading="lazy"
               class="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
             />
@@ -108,7 +114,7 @@ const beneficios = [
   <section class="py-20 sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
-        <img src="/images/IMG-20210424-WA0024-1024x663.jpg" alt="Enfoque de arquitectura sostenible" class="h-full w-full object-cover" />
+        <Image src={imagenEnfoque} alt="Enfoque de arquitectura sostenible" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
       <div data-reveal="derecha" style="--reveal-delay: 100ms">
         <h2 class="font-heading text-4xl font-bold sm:text-5xl">Nuestro enfoque de arquitectura sostenible</h2>
@@ -137,7 +143,7 @@ const beneficios = [
   <section class="bg-mint py-20 sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
-        <img src="/images/IMG-20210429-WA0021-1024x576.jpg" alt="Tipos de proyectos arquitectónicos" class="h-full w-full object-cover" />
+        <Image src={imagenTipos} alt="Tipos de proyectos arquitectónicos" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
       <div data-reveal="derecha" style="--reveal-delay: 100ms">
         <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿Qué tipo de proyectos desarrollamos?</h2>
@@ -174,7 +180,7 @@ const beneficios = [
         <a href="/contacto" class="boton-primario mt-8">Agenda tu asesoría</a>
       </div>
       <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
-        <img src="/images/IMG_0332.jpg" alt="Acompañamiento en obra" class="h-full w-full object-cover" />
+        <Image src={imagenObra} alt="Acompañamiento en obra" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>

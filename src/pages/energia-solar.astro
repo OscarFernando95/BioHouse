@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import Icono from "../components/Icono.astro";
+import imagenSolarHero from "../assets/images/pexels-hoan-ng-c-510735-6961085-scaled.jpg";
+import imagenSolarEnfoque from "../assets/images/pexels-quang-nguyen-vinh-222549-35105464-1536x770.jpg";
 
 const soluciones = [
   "Sistemas solares fotovoltaicos",
@@ -26,11 +29,16 @@ const beneficios = [
 >
   <!-- Héroe -->
   <section class="relative flex min-h-[70vh] items-center overflow-hidden bg-deep" data-parallax-contenedor>
-    <img
-      src="/images/pexels-hoan-ng-c-510735-6961085-scaled.jpg"
+    <Image
+      src={imagenSolarHero}
       alt="Paneles solares en proyecto Bio House"
+      width={1920}
+      format="webp"
+      quality={78}
       class="absolute inset-0 h-full w-full scale-110 object-cover"
       data-parallax
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/20"></div>
     <div class="container-ancho relative py-20 text-white texto-contraste" data-entrada>
@@ -63,9 +71,12 @@ const beneficios = [
   <section class="bg-mint py-20 sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="overflow-hidden rounded-xl" data-reveal="izquierda">
-        <img
-          src="/images/pexels-quang-nguyen-vinh-222549-35105464-1536x770.jpg"
+        <Image
+          src={imagenSolarEnfoque}
           alt="Enfoque en energía solar"
+          width={900}
+          format="webp"
+          loading="lazy"
           class="h-full w-full object-cover"
         />
       </div>

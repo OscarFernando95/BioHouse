@@ -1,24 +1,80 @@
 ---
+import { getImage } from "astro:assets";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BotonFlotanteWhatsapp from "../components/BotonFlotanteWhatsapp.astro";
 import TransicionPagina from "../components/TransicionPagina.astro";
+import { sitio, redesSociales } from "../data/site.js";
+import { obtenerImagen } from "../utils/imagenes";
+import logoBio from "../assets/images/logo-bio.png";
 
 interface Props {
   titulo: string;
   descripcion?: string;
   imagen?: string;
+  tipo?: "website" | "article";
+  fechaPublicacion?: string;
+  fechaModificacion?: string;
+  noIndexar?: boolean;
 }
 
 const {
   titulo,
   descripcion = "Bio House Constructora: viviendas y soluciones constructivas con plástico recuperado que reducen la huella de carbono y generan impacto social.",
   imagen = "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
+  tipo = "website",
+  fechaPublicacion,
+  fechaModificacion,
+  noIndexar = false,
 } = Astro.props;
 
+const sitioBase = Astro.site ?? new URL("https://www.biohouseconstructora.com");
 const tituloCompleto = titulo === "Bio House Constructora" ? titulo : `${titulo} · Bio House Constructora`;
-const urlCanonica = new URL(Astro.url.pathname, Astro.site ?? "https://www.biohouseconstructora.com").toString();
+const urlCanonica = new URL(Astro.url.pathname, sitioBase).toString();
+
+const imagenOgOptimizada = await getImage({ src: obtenerImagen(imagen), format: "webp" });
+const urlImagen = new URL(imagenOgOptimizada.src, sitioBase).toString();
+
+const logoOptimizado = await getImage({ src: logoBio, width: 256, format: "webp" });
+const urlLogo = new URL(logoOptimizado.src, sitioBase).toString();
+
+const datosNegocio = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "@id": `${sitioBase}#negocio`,
+  name: sitio.nombre,
+  description: sitio.descripcion,
+  url: sitioBase.toString(),
+  telephone: sitio.telefono,
+  email: sitio.email,
+  image: urlLogo,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: sitio.direccion,
+    addressLocality: "Pitalito",
+    addressRegion: "Huila",
+    addressCountry: "CO",
+  },
+  areaServed: "CO",
+  sameAs: redesSociales.map((red) => red.url),
+};
+
+const datosArticulo =
+  tipo === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: titulo,
+        description: descripcion,
+        image: urlImagen,
+        datePublished: fechaPublicacion,
+        dateModified: fechaModificacion ?? fechaPublicacion,
+        author: { "@type": "Organization", name: sitio.nombre },
+        publisher: { "@type": "Organization", name: sitio.nombre, logo: urlLogo },
+        mainEntityOfPage: urlCanonica,
+      }
+    : null;
 ---
 
 <!doctype html>
@@ -34,15 +90,25 @@ const urlCanonica = new URL(Astro.url.pathname, Astro.site ?? "https://www.bioho
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={urlCanonica} />
     <meta name="generator" content={Astro.generator} />
+    {noIndexar && <meta name="robots" content="noindex, nofollow" />}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={tipo} />
     <meta property="og:title" content={tituloCompleto} />
     <meta property="og:description" content={descripcion} />
-    <meta property="og:image" content={new URL(imagen, Astro.site ?? "https://www.biohouseconstructora.com")} />
+    <meta property="og:image" content={urlImagen} />
     <meta property="og:url" content={urlCanonica} />
     <meta property="og:site_name" content="Bio House Constructora" />
     <meta property="og:locale" content="es_CO" />
+    {tipo === "article" && fechaPublicacion && <meta property="article:published_time" content={fechaPublicacion} />}
+    {tipo === "article" && fechaModificacion && <meta property="article:modified_time" content={fechaModificacion} />}
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={tituloCompleto} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={urlImagen} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(datosNegocio)} is:inline />
+    {datosArticulo && <script type="application/ld+json" set:html={JSON.stringify(datosArticulo)} is:inline />}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

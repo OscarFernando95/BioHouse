@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import { obtenerImagen } from "../utils/imagenes";
+
 interface Boton {
   texto: string;
   href: string;
@@ -33,14 +36,19 @@ const primera = slides[0];
   <div class="absolute inset-0">
     {
       slides.map((slide, i) => (
-        <img
-          src={slide.imagen}
+        <Image
+          src={obtenerImagen(slide.imagen)}
           alt={slide.alt}
+          format="webp"
+          quality={78}
           data-capa
           data-index={i}
           data-parallax
           class="absolute inset-0 h-full w-full scale-110 object-cover"
           style={`opacity: ${i === 0 ? 1 : 0}`}
+          loading={i === 0 ? "eager" : "lazy"}
+          fetchpriority={i === 0 ? "high" : "low"}
+          decoding={i === 0 ? "sync" : "async"}
         />
       ))
     }

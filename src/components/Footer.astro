@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { sitio, redesSociales } from "../data/site.js";
 import Icono from "./Icono.astro";
+import logoBio from "../assets/images/logo-bio.png";
 
 const redesFooter = redesSociales.filter((r) =>
   ["Facebook", "Instagram", "Youtube", "Tiktok"].includes(r.nombre)
@@ -11,7 +13,7 @@ const redesFooter = redesSociales.filter((r) =>
   <div class="container-ancho grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
     <div class="sm:col-span-2 lg:col-span-2">
       <a href="/" class="flex items-center gap-3">
-        <img src="/images/logo-bio.png" alt="Bio House Constructora" class="h-12 w-auto" width="400" height="400" />
+        <Image src={logoBio} alt="Bio House Constructora" class="h-12 w-auto" width={160} height={160} />
         <span class="font-heading text-lg font-extrabold leading-none tracking-tight text-white">BIO HOUSE</span>
       </a>
       <p class="mt-4 max-w-sm text-sm leading-relaxed">{sitio.descripcion}</p>

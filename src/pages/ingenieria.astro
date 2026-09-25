@@ -1,6 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
+import imagenHero from "../assets/images/IMG-20210228-WA0015.jpg";
+import imagenServicio from "../assets/images/IMG_20210415_150426760-scaled.jpg";
+import imagenEnfoque from "../assets/images/240_F_445467139_pTBW8OrcgV7GDwIeuOnMjmMLJRFMdZiv.jpg";
+import imagenSoluciones from "../assets/images/IMG_20210415_150321463-scaled.jpg";
 ---
 
 <Layout
@@ -22,7 +27,7 @@ import CtaFinal from "../components/CtaFinal.astro";
         <a href="/contacto" class="boton-primario mt-8">Agenda una asesoría técnica</a>
       </div>
       <div class="overflow-hidden rounded-xl" data-entrada style="--entrada-delay: 150ms">
-        <img src="/images/IMG-20210228-WA0015.jpg" alt="Ingeniería aplicada Bio House" class="h-full w-full object-cover" />
+        <Image src={imagenHero} alt="Ingeniería aplicada Bio House" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>
@@ -31,7 +36,7 @@ import CtaFinal from "../components/CtaFinal.astro";
   <section class="bg-mint py-20 sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="order-2 overflow-hidden rounded-xl lg:order-1" data-reveal="izquierda">
-        <img src="/images/IMG_20210415_150426760-scaled.jpg" alt="Servicio de ingeniería" class="h-full w-full object-cover" />
+        <Image src={imagenServicio} alt="Servicio de ingeniería" width={900} format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
       <div class="order-1 lg:order-2" data-reveal="derecha" style="--reveal-delay: 100ms">
         <h2 class="font-heading text-4xl font-bold sm:text-5xl">¿En qué consiste nuestro servicio de Ingeniería?</h2>
@@ -56,11 +61,7 @@ import CtaFinal from "../components/CtaFinal.astro";
         <a href="/contacto" class="boton-primario mt-8">Consulta con un ingeniero</a>
       </div>
       <div class="overflow-hidden rounded-xl" data-reveal="derecha" style="--reveal-delay: 100ms">
-        <img
-          src="/images/240_F_445467139_pTBW8OrcgV7GDwIeuOnMjmMLJRFMdZiv.jpg"
-          alt="Enfoque en ingeniería"
-          class="h-full w-full object-cover"
-        />
+        <Image src={imagenEnfoque} alt="Enfoque en ingeniería" format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>
@@ -69,7 +70,7 @@ import CtaFinal from "../components/CtaFinal.astro";
   <section class="bg-ink py-20 text-white sm:py-24">
     <div class="container-ancho grid gap-14 lg:grid-cols-2 lg:items-center">
       <div class="order-2 overflow-hidden rounded-xl lg:order-1" data-reveal="izquierda">
-        <img src="/images/IMG_20210415_150321463-scaled.jpg" alt="Soluciones de ingeniería" class="h-full w-full object-cover" />
+        <Image src={imagenSoluciones} alt="Soluciones de ingeniería" width={900} format="webp" loading="lazy" class="h-full w-full object-cover" />
       </div>
       <div class="order-1 lg:order-2" data-reveal="derecha" style="--reveal-delay: 100ms">
         <h2 class="font-heading text-4xl font-bold text-white sm:text-5xl">¿Qué tipo de soluciones ofrecemos?</h2>

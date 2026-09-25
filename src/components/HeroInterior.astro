@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import { obtenerImagen } from "../utils/imagenes";
+
 interface Boton {
   texto: string;
   href: string;
@@ -20,7 +23,17 @@ const { imagen, alt, frase, titulo, texto, botones, alturaMinima = "min-h-[75vh]
 ---
 
 <section class={`relative flex ${alturaMinima} items-center justify-center overflow-hidden bg-deep`} data-parallax-contenedor>
-  <img src={imagen} alt={alt} class="absolute inset-0 h-full w-full scale-110 object-cover" data-parallax />
+  <Image
+    src={obtenerImagen(imagen)}
+    alt={alt}
+    format="webp"
+    quality={78}
+    class="absolute inset-0 h-full w-full scale-110 object-cover"
+    data-parallax
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+  />
   <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/70 to-deep/35"></div>
 
   <div class="container-ancho relative z-10 py-24 text-center text-white texto-contraste">

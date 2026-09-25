@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import HeroInterior from "../../components/HeroInterior.astro";
+import { obtenerImagen } from "../../utils/imagenes";
 
 const entradas = [
   {
@@ -9,6 +11,8 @@ const entradas = [
       "La vivienda del futuro: cómo la construcción sostenible y la economía circular pueden ayudar a resolver la crisis habitacional mundial.",
     imagen: "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
     href: "/blog/el-caos-vivendi",
+    fecha: "2025-09-13",
+    fechaLegible: "13 de septiembre de 2025",
   },
 ];
 ---
@@ -33,15 +37,17 @@ const entradas = [
             style={`--reveal-delay: ${indice * 120}ms`}
           >
             <div class="aspect-[16/10] overflow-hidden">
-              <img
-                src={entrada.imagen}
+              <Image
+                src={obtenerImagen(entrada.imagen)}
                 alt={entrada.titulo}
+                format="webp"
                 loading="lazy"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <div class="p-6">
               <h2 class="font-heading text-lg font-semibold group-hover:text-primary-dark">{entrada.titulo}</h2>
+              <time datetime={entrada.fecha} class="mt-1 block text-xs text-ink/50">{entrada.fechaLegible}</time>
               <p class="mt-2 text-sm leading-relaxed">{entrada.resumen}</p>
               <span class="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-primary">
                 Leer más »

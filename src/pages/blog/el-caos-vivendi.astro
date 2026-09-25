@@ -1,17 +1,25 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import { sitio } from "../../data/site.js";
+import imagenVivienda from "../../assets/images/blog-vivienda-futuro.png";
 ---
 
 <Layout
   titulo="El caos vivendi"
   descripcion="La vivienda del futuro: cómo la construcción sostenible y la economía circular pueden ayudar a resolver la crisis habitacional mundial."
+  imagen="/images/blog-vivienda-futuro.png"
+  tipo="article"
+  fechaPublicacion="2025-09-13"
 >
   <article class="py-20 sm:py-24">
     <div class="container-ancho max-w-3xl">
       <div data-entrada>
         <p class="eyebrow">Blog</p>
         <h1 class="mt-4 font-heading text-4xl font-extrabold leading-tight sm:text-5xl">El caos vivendi</h1>
+        <p class="mt-3 text-sm text-ink/60">
+          <time datetime="2025-09-13">13 de septiembre de 2025</time> · Bio House Constructora
+        </p>
         <p class="mt-4 text-lg font-semibold text-primary-dark">
           La vivienda del futuro: cómo la construcción sostenible y la economía circular pueden ayudar a resolver la
           crisis habitacional mundial.
@@ -38,7 +46,7 @@ import { sitio } from "../../data/site.js";
           por la ONU y ONU-Hábitat para enfrentar el déficit habitacional global.
         </p>
 
-        <img src="/images/blog-vivienda-futuro.png" alt="Vivienda sostenible del futuro" class="w-full rounded-xl" loading="lazy" />
+        <Image src={imagenVivienda} alt="Vivienda sostenible del futuro" format="webp" loading="lazy" class="w-full rounded-xl" />
 
         <h2 class="font-heading text-2xl font-semibold text-ink">La crisis habitacional mundial: un desafío de escala histórica</h2>
         <p>
