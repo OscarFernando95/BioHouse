@@ -1,0 +1,23 @@
+# Bio House Constructora
+
+> Bio House Constructora es una empresa colombiana con sede en Pitalito, Huila, especializada en sistemas constructivos sostenibles elaborados con plástico recuperado. Transforma residuos plásticos en bloques constructivos que reducen la huella de carbono, aceleran los tiempos de obra y generan impacto social.
+
+Bio House Constructora ofrece arquitectura, ingeniería, energía solar y domótica integradas en un solo modelo constructivo sostenible, eficiente y de rápida instalación, dirigido a vivienda, proyectos institucionales y comerciales en Colombia.
+
+## Páginas principales
+
+- [Inicio](https://www.biohouseconstructora.com/): presentación del sistema constructivo con plástico recuperado y proyectos destacados.
+- [Servicios](https://www.biohouseconstructora.com/servicios/): arquitectura, ingeniería, energía solar y domótica.
+- [Arquitectura](https://www.biohouseconstructora.com/arquitectura/): diseño arquitectónico sostenible y proceso de trabajo.
+- [Ingeniería](https://www.biohouseconstructora.com/ingenieria/): viabilidad técnica, seguridad estructural y cumplimiento normativo.
+- [Energía Solar](https://www.biohouseconstructora.com/energia-solar/): sistemas fotovoltaicos e híbridos para proyectos sostenibles.
+- [Domótica](https://www.biohouseconstructora.com/domotica/): automatización de espacios para eficiencia y seguridad.
+- [Quiénes Somos](https://www.biohouseconstructora.com/quienes-somos/): historia, equipo, visión y misión de la empresa.
+- [Blog](https://www.biohouseconstructora.com/blog/): artículos sobre construcción sostenible y economía circular.
+- [Contacto](https://www.biohouseconstructora.com/contacto/): datos de contacto y formulario de asesoría.
+
+## Datos de contacto
+
+- Dirección: Calle 20 A #3-62, Pitalito, Huila, Colombia
+- Teléfono: +57 314 623 1387
+- Correo: contacto@biohouseconstructora.com

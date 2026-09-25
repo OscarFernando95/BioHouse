@@ -3,10 +3,29 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import Icono from "../components/Icono.astro";
+import FAQ from "../components/FAQ.astro";
 import { obtenerImagen } from "../utils/imagenes";
 import imagenEnfoque from "../assets/images/IMG-20210424-WA0024-1024x663.jpg";
 import imagenTipos from "../assets/images/IMG-20210429-WA0021-1024x576.jpg";
 import imagenObra from "../assets/images/IMG_0332.jpg";
+
+const preguntas = [
+  {
+    pregunta: "¿El diseño arquitectónico incluye los permisos y trámites de construcción?",
+    respuesta:
+      "Acompañamos el proceso de diseño y coordinamos con ingeniería para que el proyecto cumpla la normativa aplicable; los trámites específicos ante curadurías se definen según cada municipio y proyecto.",
+  },
+  {
+    pregunta: "¿Puedo adaptar un diseño arquitectónico ya existente al sistema constructivo de Bio House?",
+    respuesta:
+      "Sí, evaluamos planos existentes y los ajustamos para integrarlos con nuestro sistema de bloques de plástico recuperado, optimizando distribución, estructura y eficiencia constructiva.",
+  },
+  {
+    pregunta: "¿Cuánto tiempo toma el diseño arquitectónico de un proyecto?",
+    respuesta:
+      "Depende de la escala y complejidad del proyecto; en promedio, el anteproyecto y diseño arquitectónico se desarrollan en pocas semanas, gracias a un proceso de diseño estructurado en etapas claras.",
+  },
+];
 
 const pasos = [
   "Diagnóstico y asesoría inicial",
@@ -40,7 +59,7 @@ const beneficios = [
 ---
 
 <Layout
-  titulo="Arquitectura"
+  titulo="Arquitectura Sostenible en Colombia"
   descripcion="Arquitectura sostenible diseñada para construir mejor: soluciones funcionales, eficientes y alineadas con sistemas constructivos innovadores."
 >
   <!-- Héroe -->
@@ -194,6 +213,8 @@ const beneficios = [
       <a href="/contacto" class="boton-primario">Inicia tu proyecto hoy</a>
     </div>
   </section>
+
+  <FAQ titulo="Preguntas frecuentes sobre arquitectura" preguntas={preguntas} />
 
   <CtaFinal />
 </Layout>

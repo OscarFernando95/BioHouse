@@ -2,14 +2,57 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
+import Icono from "../components/Icono.astro";
+import FAQ from "../components/FAQ.astro";
 import imagenHero from "../assets/images/IMG-20210228-WA0015.jpg";
 import imagenServicio from "../assets/images/IMG_20210415_150426760-scaled.jpg";
 import imagenEnfoque from "../assets/images/240_F_445467139_pTBW8OrcgV7GDwIeuOnMjmMLJRFMdZiv.jpg";
 import imagenSoluciones from "../assets/images/IMG_20210415_150321463-scaled.jpg";
+
+const preguntas = [
+  {
+    pregunta: "¿Qué incluye el servicio de ingeniería de Bio House Constructora?",
+    respuesta:
+      "Estudios técnicos, diseño estructural, cálculo de cargas, coordinación con arquitectura y sistemas sostenibles, y supervisión de obra alineados con la normativa vigente en Colombia.",
+  },
+  {
+    pregunta: "¿La ingeniería se integra con el sistema constructivo de plástico recuperado?",
+    respuesta:
+      "Sí. Nuestros ingenieros diseñan cada estructura considerando las propiedades específicas de los bloques de plástico recuperado, garantizando estabilidad, resistencia y cumplimiento normativo.",
+  },
+  {
+    pregunta: "¿Trabajan con estudios de suelo y viabilidad técnica previos a la construcción?",
+    respuesta:
+      "Sí, realizamos el diagnóstico técnico inicial necesario para definir la viabilidad estructural del proyecto antes de avanzar al diseño y la etapa de obra.",
+  },
+];
+
+const etapas = [
+  {
+    icono: "objetivo" as const,
+    titulo: "Diagnóstico técnico",
+    texto: "Evaluamos el terreno, las cargas previstas y las condiciones del entorno para definir la viabilidad estructural del proyecto.",
+  },
+  {
+    icono: "engranaje" as const,
+    titulo: "Diseño estructural",
+    texto: "Calculamos y dimensionamos la estructura considerando el sistema constructivo de bloques de plástico recuperado.",
+  },
+  {
+    icono: "escudo" as const,
+    titulo: "Cumplimiento normativo",
+    texto: "Verificamos que cada diseño cumpla la normativa sismo-resistente y de construcción vigente en Colombia.",
+  },
+  {
+    icono: "calendario" as const,
+    titulo: "Supervisión de obra",
+    texto: "Acompañamos la ejecución en campo para asegurar que lo construido corresponda exactamente al diseño técnico aprobado.",
+  },
+];
 ---
 
 <Layout
-  titulo="Ingeniería"
+  titulo="Ingeniería Constructiva"
   descripcion="Ingeniería aplicada para construir con seguridad y eficiencia: viabilidad técnica, seguridad estructural y cumplimiento normativo."
 >
   <!-- Héroe -->
@@ -82,6 +125,34 @@ import imagenSoluciones from "../assets/images/IMG_20210415_150321463-scaled.jpg
       </div>
     </div>
   </section>
+
+  <!-- Etapas -->
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho">
+      <h2 class="text-center font-heading text-4xl font-bold sm:text-5xl" data-reveal>
+        Etapas de nuestro proceso de ingeniería
+      </h2>
+      <div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {
+          etapas.map((etapa, indice) => (
+            <div
+              class="rounded-xl border border-black/5 p-7"
+              data-reveal={["izquierda", "abajo", "abajo", "derecha"][indice]}
+              style={`--reveal-delay: ${indice * 100}ms`}
+            >
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icono nombre={etapa.icono} class="h-6 w-6" />
+              </span>
+              <h3 class="mt-4 font-heading text-lg font-semibold text-primary-dark">{etapa.titulo}</h3>
+              <p class="mt-3 text-sm leading-relaxed">{etapa.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FAQ titulo="Preguntas frecuentes sobre ingeniería" preguntas={preguntas} />
 
   <CtaFinal
     titulo="Ingeniería que respalda cada decisión constructiva"

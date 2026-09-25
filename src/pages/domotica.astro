@@ -1,14 +1,58 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/CtaFinal.astro";
+import Icono from "../components/Icono.astro";
+import FAQ from "../components/FAQ.astro";
 import imagenHero from "../assets/images/full_domotica.webp";
 import imagenControl from "../assets/images/revista-s360-domotica.webp";
 import imagenServicio from "../assets/images/full_domotica_2.webp";
 import imagenInteligente from "../assets/images/full_domotica_4.webp";
+
+const beneficios = [
+  {
+    icono: "chip" as const,
+    titulo: "Control centralizado",
+    texto: "Gestiona iluminación, climatización, seguridad y accesos desde un solo sistema, en tiempo real y desde cualquier lugar.",
+  },
+  {
+    icono: "rayo" as const,
+    titulo: "Ahorro energético",
+    texto: "La automatización de luces y climatización reduce el consumo eléctrico al ajustar el uso a la ocupación real del espacio.",
+  },
+  {
+    icono: "escudo" as const,
+    titulo: "Mayor seguridad",
+    texto: "Sensores, cámaras y alertas integradas fortalecen la seguridad de viviendas y proyectos comerciales.",
+  },
+  {
+    icono: "engranaje" as const,
+    titulo: "Integración desde el diseño",
+    texto: "Coordinamos la domótica con arquitectura e ingeniería desde el inicio del proyecto, evitando retrabajos e instalaciones improvisadas.",
+  },
+];
+
+const preguntas = [
+  {
+    pregunta: "¿Qué diferencia a la domótica de un sistema de automatización tradicional?",
+    respuesta:
+      "La domótica integra todos los sistemas del hogar o proyecto (iluminación, climatización, seguridad y sensores) en una sola plataforma inteligente, mientras que la automatización tradicional suele resolver un solo aspecto de forma aislada.",
+  },
+  {
+    pregunta: "¿La domótica se puede instalar en proyectos ya construidos?",
+    respuesta:
+      "Sí. Aunque la integración es más eficiente cuando se planea desde el diseño arquitectónico, también implementamos soluciones de domótica adaptadas a viviendas y edificaciones existentes.",
+  },
+  {
+    pregunta: "¿Qué tipo de proyectos pueden beneficiarse de la domótica inteligente?",
+    respuesta:
+      "Viviendas unifamiliares, proyectos multifamiliares, oficinas y espacios comerciales que buscan mayor eficiencia energética, seguridad y confort a través de la automatización.",
+  },
+];
 ---
 
 <Layout
-  titulo="Domótica"
+  titulo="Domótica Inteligente para tu Hogar"
   descripcion="Domótica inteligente para espacios más eficientes y seguros: automatización con control total y tranquilidad."
 >
   <!-- Héroe -->
@@ -85,4 +129,38 @@ import imagenInteligente from "../assets/images/full_domotica_4.webp";
       </div>
     </div>
   </section>
+
+  <!-- Beneficios -->
+  <section class="bg-mint py-20 sm:py-24">
+    <div class="container-ancho">
+      <div class="mx-auto max-w-2xl text-center" data-reveal>
+        <h2 class="font-heading text-4xl font-bold sm:text-5xl">Beneficios de automatizar tu proyecto</h2>
+      </div>
+      <div class="mt-14 grid gap-8 md:grid-cols-2">
+        {
+          beneficios.map((beneficio, indice) => (
+            <div
+              class="rounded-xl bg-white p-7 shadow-sm shadow-black/5"
+              data-reveal={indice % 2 === 0 ? "izquierda" : "derecha"}
+              style={`--reveal-delay: ${indice * 100}ms`}
+            >
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icono nombre={beneficio.icono} class="h-6 w-6" />
+              </span>
+              <h3 class="mt-4 font-heading text-lg font-semibold text-primary-dark">{beneficio.titulo}</h3>
+              <p class="mt-3 text-sm leading-relaxed">{beneficio.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FAQ titulo="Preguntas frecuentes sobre domótica" preguntas={preguntas} />
+
+  <CtaFinal
+    titulo="Lleva la domótica a tu próximo proyecto"
+    texto="Cuéntanos qué necesitas automatizar y diseñamos una solución a la medida."
+    textoBoton="Agenda una asesoría"
+  />
 </Layout>

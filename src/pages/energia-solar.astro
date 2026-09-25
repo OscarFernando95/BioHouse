@@ -3,8 +3,27 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CtaFinal from "../components/CtaFinal.astro";
 import Icono from "../components/Icono.astro";
+import FAQ from "../components/FAQ.astro";
 import imagenSolarHero from "../assets/images/pexels-hoan-ng-c-510735-6961085-scaled.jpg";
 import imagenSolarEnfoque from "../assets/images/pexels-quang-nguyen-vinh-222549-35105464-1536x770.jpg";
+
+const preguntas = [
+  {
+    pregunta: "¿Los sistemas de energía solar se pueden integrar a cualquier tipo de proyecto?",
+    respuesta:
+      "Sí, diseñamos soluciones fotovoltaicas para vivienda, proyectos institucionales y comerciales, adaptando la capacidad del sistema al consumo energético real de cada proyecto.",
+  },
+  {
+    pregunta: "¿Qué diferencia hay entre un sistema de autoconsumo y uno híbrido?",
+    respuesta:
+      "El sistema de autoconsumo genera energía para reducir el consumo de la red eléctrica convencional, mientras que el híbrido combina paneles solares con baterías de respaldo para mayor autosuficiencia energética.",
+  },
+  {
+    pregunta: "¿En cuánto tiempo se recupera la inversión en energía solar?",
+    respuesta:
+      "El retorno depende del consumo energético y del tamaño del sistema instalado; nuestro equipo técnico evalúa cada proyecto para estimar el ahorro y el tiempo de recuperación antes de iniciar la instalación.",
+  },
+];
 
 const soluciones = [
   "Sistemas solares fotovoltaicos",
@@ -24,7 +43,7 @@ const beneficios = [
 ---
 
 <Layout
-  titulo="Energía Solar"
+  titulo="Energía Solar Sostenible"
   descripcion="Diseñamos e implementamos sistemas de energía solar que reducen costos, optimizan el consumo energético y cuidan el medio ambiente."
 >
   <!-- Héroe -->
@@ -150,6 +169,8 @@ const beneficios = [
       <p class="max-w-xl">Invierte hoy en soluciones energéticas responsables y eficientes.</p>
     </div>
   </section>
+
+  <FAQ titulo="Preguntas frecuentes sobre energía solar" preguntas={preguntas} />
 
   <CtaFinal />
 </Layout>

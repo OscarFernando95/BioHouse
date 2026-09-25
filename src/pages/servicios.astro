@@ -3,7 +3,26 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import HeroInterior from "../components/HeroInterior.astro";
 import Icono from "../components/Icono.astro";
+import FAQ from "../components/FAQ.astro";
 import { obtenerImagen } from "../utils/imagenes";
+
+const preguntas = [
+  {
+    pregunta: "¿Bio House Constructora presta los cuatro servicios por separado?",
+    respuesta:
+      "Sí. Puedes contratar arquitectura, ingeniería, energía solar o domótica de forma independiente, aunque el mayor beneficio se obtiene cuando se integran desde el inicio del proyecto en un solo modelo constructivo.",
+  },
+  {
+    pregunta: "¿Cómo se coordinan la arquitectura, la ingeniería y la energía solar en un mismo proyecto?",
+    respuesta:
+      "Nuestro equipo trabaja de forma articulada desde el diseño, integrando la viabilidad estructural, la eficiencia energética y la domótica antes de iniciar obra, para evitar retrabajos y sobrecostos.",
+  },
+  {
+    pregunta: "¿En qué tipo de proyectos aplican estos servicios integrados?",
+    respuesta:
+      "Vivienda unifamiliar y multifamiliar, proyectos institucionales, comerciales y de vivienda social, tanto en zonas urbanas como rurales de Colombia.",
+  },
+];
 
 const servicios = [
   {
@@ -38,7 +57,7 @@ const servicios = [
 ---
 
 <Layout
-  titulo="Servicios"
+  titulo="Servicios de Construcción"
   descripcion="Arquitectura, ingeniería, energía solar y domótica integradas en un solo modelo constructivo sostenible."
 >
   <HeroInterior
@@ -48,6 +67,23 @@ const servicios = [
     titulo="Arquitectura, ingeniería, energía solar y domótica integradas en cada proyecto"
     texto="Diseñado para optimizar recursos, reducir impacto ambiental y garantizar resultados confiables."
   />
+
+  <section class="py-20 sm:py-24">
+    <div class="container-ancho max-w-3xl text-center" data-reveal="abajo">
+      <h2 class="font-heading text-4xl font-bold sm:text-5xl">Un modelo de construcción integrado</h2>
+      <p class="mx-auto mt-5 max-w-2xl leading-relaxed">
+        En Bio House Constructora no ofrecemos servicios aislados: articulamos arquitectura, ingeniería, energía
+        solar y domótica dentro de un mismo modelo constructivo sostenible. Esta integración permite reducir
+        retrabajos, optimizar tiempos de obra y garantizar que cada decisión técnica responda a un mismo objetivo de
+        eficiencia y bajo impacto ambiental.
+      </p>
+      <p class="mx-auto mt-4 max-w-2xl leading-relaxed">
+        Cada servicio se apoya en nuestro sistema constructivo con bloques de plástico recuperado, lo que nos permite
+        ofrecer soluciones más rápidas de instalar, más económicas de mantener y alineadas con los estándares
+        actuales de sostenibilidad y economía circular.
+      </p>
+    </div>
+  </section>
 
   <section class="py-20 sm:py-24">
     <div class="container-ancho grid gap-8 sm:grid-cols-2">
@@ -83,6 +119,8 @@ const servicios = [
       }
     </div>
   </section>
+
+  <FAQ titulo="Preguntas frecuentes sobre nuestros servicios" preguntas={preguntas} />
 
   <section class="bg-ink py-20 text-white sm:py-24">
     <div class="container-ancho flex flex-col items-center gap-6 text-center" data-reveal="abajo">
