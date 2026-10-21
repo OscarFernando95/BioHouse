@@ -2,19 +2,12 @@
 import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import HeroInterior from "../../components/HeroInterior.astro";
-import { obtenerImagen } from "../../utils/imagenes";
+import { getCollection } from "astro:content";
+import { formatearFecha } from "../../utils/fechas";
 
-const entradas = [
-  {
-    titulo: "El caos vivendi",
-    resumen:
-      "La vivienda del futuro: cómo la construcción sostenible y la economía circular pueden ayudar a resolver la crisis habitacional mundial.",
-    imagen: "/images/240_F_436392941_nTkBmmHSocMfO2TopRGhMfDfUJIsVIc9.jpg",
-    href: "/blog/el-caos-vivendi",
-    fecha: "2025-09-13",
-    fechaLegible: "13 de septiembre de 2025",
-  },
-];
+const entradas = (await getCollection("blog", ({ data }) => data.publicado)).sort(
+  (a, b) => b.data.fecha.getTime() - a.data.fecha.getTime()
+);
 ---
 
 <Layout titulo="Blog de Construcción Sostenible" descripcion="Artículos de Bio House Constructora sobre construcción sostenible, economía circular y vivienda del futuro.">
@@ -31,24 +24,24 @@ const entradas = [
       {
         entradas.map((entrada, indice) => (
           <a
-            href={entrada.href}
+            href={`/blog/${entrada.id}`}
             class="group flex flex-col overflow-hidden rounded-xl border border-black/5 shadow-sm shadow-black/5 transition-shadow hover:shadow-lg"
             data-reveal={["izquierda", "abajo", "derecha"][indice % 3]}
             style={`--reveal-delay: ${indice * 120}ms`}
           >
             <div class="aspect-[16/10] overflow-hidden">
               <Image
-                src={obtenerImagen(entrada.imagen)}
-                alt={entrada.titulo}
+                src={entrada.data.imagen}
+                alt={entrada.data.textoAlternativo}
                 format="webp"
                 loading="lazy"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <div class="p-6">
-              <h2 class="font-heading text-lg font-semibold group-hover:text-primary-dark">{entrada.titulo}</h2>
-              <time datetime={entrada.fecha} class="mt-1 block text-xs text-ink/50">{entrada.fechaLegible}</time>
-              <p class="mt-2 text-sm leading-relaxed">{entrada.resumen}</p>
+              <h2 class="font-heading text-lg font-semibold group-hover:text-primary-dark">{entrada.data.titulo}</h2>
+              <time datetime={entrada.data.fecha.toISOString().slice(0, 10)} class="mt-1 block text-xs text-ink/50">{formatearFecha(entrada.data.fecha)}</time>
+              <p class="mt-2 text-sm leading-relaxed">{entrada.data.resumen}</p>
               <span class="mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-primary">
                 Leer más »
               </span>

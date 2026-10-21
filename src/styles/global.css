@@ -292,3 +292,48 @@ header[data-encabezado].con-scroll {
 [data-capa] {
   transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* Cuerpo de los artículos del blog (renderizado desde Markdoc, sin clases propias). */
+.contenido-articulo {
+  @apply space-y-6 leading-relaxed;
+}
+
+.contenido-articulo h2 {
+  @apply pt-2 font-heading text-2xl font-semibold text-ink;
+}
+
+.contenido-articulo h3 {
+  @apply font-heading text-lg font-semibold text-ink;
+}
+
+.contenido-articulo h4 {
+  @apply font-heading font-semibold text-ink;
+}
+
+.contenido-articulo ul {
+  @apply list-disc space-y-1 pl-6;
+}
+
+.contenido-articulo ol {
+  @apply list-decimal space-y-1 pl-6;
+}
+
+.contenido-articulo a {
+  @apply font-semibold text-primary underline underline-offset-2 hover:text-primary-dark;
+}
+
+.contenido-articulo strong {
+  @apply font-semibold text-ink;
+}
+
+.contenido-articulo blockquote {
+  @apply border-l-4 border-lime pl-5 italic;
+}
+
+.contenido-articulo img {
+  @apply w-full rounded-xl;
+}
+
+.contenido-articulo hr {
+  @apply border-black/10;
+}

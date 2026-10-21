@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /keystatic
+Disallow: /api/keystatic
+Disallow: /admin
 
 Sitemap: https://www.biohouseconstructora.com/sitemap.xml

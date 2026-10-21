@@ -1,4 +1,5 @@
 ---
+import type { ImageMetadata } from "astro";
 import { getImage } from "astro:assets";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
@@ -12,7 +13,7 @@ import logoBio from "../assets/images/logo-bio.png";
 interface Props {
   titulo: string;
   descripcion?: string;
-  imagen?: string;
+  imagen?: string | ImageMetadata;
   tipo?: "website" | "article";
   fechaPublicacion?: string;
   fechaModificacion?: string;
@@ -33,7 +34,7 @@ const sitioBase = Astro.site ?? new URL("https://www.biohouseconstructora.com");
 const tituloCompleto = /bio house/i.test(titulo) ? titulo : `${titulo} · Bio House Constructora`;
 const urlCanonica = new URL(Astro.url.pathname, sitioBase).toString();
 
-const imagenOgOptimizada = await getImage({ src: obtenerImagen(imagen), format: "webp" });
+const imagenOgOptimizada = await getImage({ src: typeof imagen === "string" ? obtenerImagen(imagen) : imagen, format: "webp" });
 const urlImagen = new URL(imagenOgOptimizada.src, sitioBase).toString();
 
 const logoOptimizado = await getImage({ src: logoBio, width: 256, format: "webp" });
